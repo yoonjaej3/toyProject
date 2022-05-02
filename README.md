@@ -1,23 +1,24 @@
 # toyProject
 
 
+### 목표
+- 객체 지향적인 코드
+- 통합 테스트
+- git 버전 관리
+- 무중단 배포
 
  <br>
 
-### Languages
-<img alt="Java" src ="https://img.shields.io/badge/Java-007396.svg?&style=for-the-badge&logo=Java&logoColor=white"/>
+### 개발 스펙
+- Gradle
+- Spring Boot 2.x
+- Spring Data JPA
+- H2
+- RESTful API
+- QueryDSL
 
 
-<br>
-
-### Technologies
-<img alt="Git" src ="https://img.shields.io/badge/Git-F05032.svg?&style=for-the-badge&logo=Git&logoColor=white"/> <img alt="Spring Boot" src ="https://img.shields.io/badge/Spring Boot-6DB33F.svg?&style=for-the-badge&logo=springboot&logoColor=white"/>
-<img alt="JPA" src ="https://img.shields.io/badge/jpa-6DB33F.svg?&style=for-the-badge&logo=jpa&logoColor=white"/>
-<img alt="queryDsl" src ="https://img.shields.io/badge/querydsl-4479A1.svg?&style=for-the-badge&logo=querydsl&logoColor=white"/>
-<img alt="mysql" src ="https://img.shields.io/badge/mysql-4479A1.svg?&style=for-the-badge&logo=mysql&logoColor=white"/>
-
-
-# 📝 [목차](#index) <a name = "index"></a>
+# [목차](#index) <a name = "index"></a>
 
 - [아키텍처](#structure)
 - [결과물](#outputs)
