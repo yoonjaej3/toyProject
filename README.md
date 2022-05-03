@@ -20,9 +20,15 @@
 
 # [목차](#index) <a name = "index"></a>
 
+- [요구사항](#requirement)
 - [아키텍처](#structure)
 - [결과물](#outputs)
 - [ERD](#erd)  
 - [테스트](#test)
 - [왜 이 기술을 사용했는가?](#why)
 - [리팩토링 & 성능 개선](#refactoring)
+
+
+
+# 요구사항 <a name = "requirement"></a>
+https://silly-trollius-4c0.notion.site/35e0187b938342bfb5e4ba42b88f8d00?v=20c32ec8e33f48ada83cfb4e490a7e4f
