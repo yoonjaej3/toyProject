@@ -32,3 +32,6 @@
 
 # 요구사항 <a name = "requirement"></a>
 https://silly-trollius-4c0.notion.site/35e0187b938342bfb5e4ba42b88f8d00?v=20c32ec8e33f48ada83cfb4e490a7e4f
+
+# ERD  <a name = "erd"></a>
+https://www.erdcloud.com/p/3buW4CcLNQGx3w6y8
