@@ -1,8 +1,8 @@
 package com.jyj.toyProject.modules.order.entity;
 
 import com.jyj.toyProject.modules.member.entity.Member;
-import com.jyj.toyProject.modules.order.entity.enums.PayType;
-import com.jyj.toyProject.modules.order.entity.enums.Status;
+import com.jyj.toyProject.modules.order.enums.PayType;
+import com.jyj.toyProject.modules.order.enums.Status;
 import com.jyj.toyProject.modules.store.entity.Store;
 import com.jyj.toyProject.modules.utils.base.BaseEntity;
 import lombok.*;

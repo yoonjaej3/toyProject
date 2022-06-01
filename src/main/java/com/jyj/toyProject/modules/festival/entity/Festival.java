@@ -1,9 +1,17 @@
 package com.jyj.toyProject.modules.festival.entity;
 
 import com.jyj.toyProject.modules.utils.base.BaseEntity;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+
+@Entity
+@Getter
+@NoArgsConstructor(access= AccessLevel.PROTECTED)
+@AllArgsConstructor
+@Builder
+@EqualsAndHashCode(callSuper = false)
 
 public class Festival extends BaseEntity {
 

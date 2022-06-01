@@ -1,4 +1,4 @@
-package com.jyj.toyProject.modules.order.entity.enums;
+package com.jyj.toyProject.modules.order.enums;
 
 import com.jyj.toyProject.modules.utils.document.EnumType;
 import lombok.Getter;
