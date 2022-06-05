@@ -1,6 +1,6 @@
 package com.jyj.toyProject.modules.order.entity;
 
-import com.jyj.toyProject.modules.order.dto.entity.Item;
+import com.jyj.toyProject.modules.item.entity.Item;
 
 import javax.persistence.*;
 
@@ -18,11 +18,5 @@ public class OrderItem {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="item_id",nullable = false)
     private Item item;
-
-    @Column(nullable = false)
-    private Long price;
-
-    @Column(nullable = false)
-    private Long count;
 
 }

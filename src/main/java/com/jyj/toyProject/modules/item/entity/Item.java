@@ -1,4 +1,4 @@
-package com.jyj.toyProject.modules.order.dto.entity;
+package com.jyj.toyProject.modules.item.entity;
 
 import com.jyj.toyProject.modules.store.entity.Store;
 import com.jyj.toyProject.modules.utils.base.BaseEntity;

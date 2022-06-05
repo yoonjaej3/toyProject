@@ -27,10 +27,6 @@ public class Orders extends BaseEntity {
     @JoinColumn(name="member_id",nullable = false)
     private Member member;
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="store_id",nullable = false)
-    private Store store;
-
     @Column
     private String request;
 
