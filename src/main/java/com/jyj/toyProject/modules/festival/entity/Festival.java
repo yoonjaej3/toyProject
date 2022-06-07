@@ -4,6 +4,7 @@ import com.jyj.toyProject.modules.utils.base.BaseEntity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -24,8 +25,8 @@ public class Festival extends BaseEntity {
     private String name;
 
     @Column(name="start_date",nullable=false,unique=true)
-    private LocalDateTime startDate;
+    private LocalDate startDate;
 
     @Column(name="end_date",nullable=false,unique=true)
-    private LocalDateTime endDate;
+    private LocalDate endDate;
 }
