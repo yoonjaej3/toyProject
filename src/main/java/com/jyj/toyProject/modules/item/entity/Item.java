@@ -2,9 +2,15 @@ package com.jyj.toyProject.modules.item.entity;
 
 import com.jyj.toyProject.modules.store.entity.Store;
 import com.jyj.toyProject.modules.utils.base.BaseEntity;
+import lombok.*;
 
 import javax.persistence.*;
 
+@Entity
+@Getter
+@NoArgsConstructor(access= AccessLevel.PROTECTED)
+@AllArgsConstructor
+@Builder
 public class Item extends BaseEntity {
 
     @Id

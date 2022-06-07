@@ -1,9 +1,15 @@
 package com.jyj.toyProject.modules.order.entity;
 
 import com.jyj.toyProject.modules.item.entity.Item;
+import lombok.*;
 
 import javax.persistence.*;
 
+@Entity
+@Getter
+@NoArgsConstructor(access= AccessLevel.PROTECTED)
+@AllArgsConstructor
+@Builder
 public class OrderItem {
 
     @Id
