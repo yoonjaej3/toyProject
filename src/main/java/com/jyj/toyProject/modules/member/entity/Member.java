@@ -27,6 +27,12 @@ public class Member {
     @Column(nullable=false,unique = false)
     private String email;
 
+    @Column(nullable=false,unique = false)
+    private String companyNumber;
+
+    @Column(nullable=false,unique = false)
+    private String organizerName;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Type type;

@@ -7,18 +7,20 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class MemberDto {
+public class MemberOrganizerDto {
     private String name;
     private String phone;
     private String email;
+    private String organizerName;
     private Type type;
 
 
     @QueryProjection
-    public MemberDto(String name, String phone,String email,Type type){
+    public MemberOrganizerDto(String name, String phone, String email, String organizerName, Type type){
         this.name=name;
         this.phone=phone;
         this.email=email;
+        this.organizerName=organizerName;
         this.type=type;
     }
 }

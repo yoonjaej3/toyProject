@@ -8,8 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
-import static com.jyj.toyProject.modules.member.enums.Type.Seller;
-
 @Component
 @RequiredArgsConstructor
 @Profile("dev")
@@ -17,14 +15,15 @@ public class MemberDummy {
 
     private final MemberRepository memberRepository;
 
-    public Member createMember(int index,Type type){
-        Member member=Member.builder()
+    public static Member createMember(int index, Type type, String organizerName, String companyNumber){
+        return Member.builder()
                 .name("test"+index)
                 .phone("0100000000"+index)
                 .email("test"+index+"@test.com")
+                .organizerName(organizerName)
+                .companyNumber(companyNumber)
                 .type(type)
                 .build();
-        Member savedMember = memberRepository.save(member);
-        return savedMember;
+
     }
 }
