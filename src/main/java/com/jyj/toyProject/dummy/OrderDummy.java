@@ -19,16 +19,13 @@ public class OrderDummy {
 
     private final OrderRepository orderRepository;
 
-    public Orders createOrder(int index,Member member,Status status,PayType payType){
-        Orders orders= Orders.builder()
+    public static Orders createOrder(int index, Member member, Status status, PayType payType){
+        return Orders.builder()
                 .member(member)
                 .request("요청사항"+index+"입니다.")
                 .type(status)
                 .payType(payType)
                 .payDate(LocalDateTime.now())
                 .build();
-
-        Orders savedOrders=orderRepository.save(orders);
-        return savedOrders;
     }
 }
