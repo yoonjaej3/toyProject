@@ -30,7 +30,7 @@ class MemberQueryRepositoryTest {
         //given
         Member member1= Member.builder()
                 .name("test1")
-                .phone("0100000001")
+                .phone("01000000001")
                 .email("test1@test.com")
                 .organizerName(null)
                 .companyNumber(null)
@@ -38,20 +38,14 @@ class MemberQueryRepositoryTest {
                 .build();
 
         //when
-        Member member= MemberDummy.createMember(1,Type.Buyer,"1111","1111");
-        System.out.println(member);
-        System.out.println(member.getId());
-        System.out.println(member.getName());
+        Member member= MemberDummy.createMember(1,Type.Buyer,null,null);
         memberRepository.save(member);
-
-        System.out.println(memberRepository);
 
         MemberBuyerDto myMember1=memberQueryRepository.findMemberBuyer(Type.Buyer).get(0);
 
         //then
-        System.out.println(member1.getName());
-        System.out.println(myMember1.getName());
         assertEquals(member1.getName(),myMember1.getName());
+        assertEquals(member1.getPhone(),myMember1.getPhone());
     
     }
 }
