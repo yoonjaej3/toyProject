@@ -1,15 +1,16 @@
 package com.jyj.toyProject.modules.order.repository.impl;
 
 
-import com.jyj.toyProject.modules.member.entity.Member;
 import com.jyj.toyProject.modules.order.dto.OrderBuyerDto;
 import com.jyj.toyProject.modules.order.dto.QOrderBuyerDto;
-import com.jyj.toyProject.modules.order.entity.QOrders;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+
+import static com.jyj.toyProject.modules.order.entity.QOrders.*;
+import static com.jyj.toyProject.modules.store.entity.QStore.*;
 
 @Repository
 public class OrderQueryRepository {
@@ -19,16 +20,18 @@ public class OrderQueryRepository {
         this.queryFactory = new JPAQueryFactory(em);
     }
 
-    public List<OrderBuyerDto>findBuyerByMember(Member member){
+    public List<OrderBuyerDto>findBuyerByStoreId(Long storeId){
         return queryFactory.select(new QOrderBuyerDto(
-                QOrders.orders.member,
-                QOrders.orders.request,
-                QOrders.orders.type,
-                QOrders.orders.payType,
-                QOrders.orders.payDate
+                orders.member,
+                orders.store,
+                orders.request,
+                orders.type,
+                orders.payType,
+                orders.payDate
         ))
-                .from(QOrders.orders)
-                .where(QOrders.orders.member.eq(member))
+                .from(orders)
+                .join(orders.store,store)
+                .where(store.id.eq(storeId))
                 .fetch();
 
     }

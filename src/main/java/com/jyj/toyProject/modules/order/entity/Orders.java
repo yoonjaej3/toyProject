@@ -2,6 +2,7 @@ package com.jyj.toyProject.modules.order.entity;
 
 import com.jyj.toyProject.modules.member.entity.Member;
 import com.jyj.toyProject.modules.order.enums.PayType;
+import com.jyj.toyProject.modules.store.entity.Store;
 import com.jyj.toyProject.modules.utils.base.BaseEntity;
 import com.jyj.toyProject.modules.order.enums.Status;
 import lombok.*;
@@ -25,6 +26,10 @@ public class Orders extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="member_id",nullable = false)
     private Member member;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="store_id",nullable = false)
+    private Store store;
 
     @Column
     private String request;
