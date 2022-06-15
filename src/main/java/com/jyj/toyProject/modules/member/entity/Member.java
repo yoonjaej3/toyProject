@@ -21,10 +21,10 @@ public class Member {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable=false,unique=true)
+    @Column(nullable=false)
     private String phone;
 
-    @Column(nullable=false,unique = false)
+    @Column(nullable=false)
     private String email;
 
     @Column(unique = false)
