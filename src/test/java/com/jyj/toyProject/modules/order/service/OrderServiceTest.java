@@ -19,6 +19,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -30,25 +31,16 @@ class OrderServiceTest {
     OrderRepository orderRepository;
 
     @Autowired
-    MemberRepository memberRepository;
-
-    @Autowired
-    StoreRepository storeRepository;
-
-    @Autowired
-    FestivalRepository festivalRepository;
-
-    @Autowired
     DummyTest dummyTest;
 
     @Test
-    @DisplayName("이미 존재한 주문이므로 실패")
-    public void  주믄등록() throws Exception{
+    @DisplayName("이미 완성된 주문 조회")
+    public void  주문조회() throws Exception{
         //given
         dummyTest.setup();
         //when
-        final Orders orderResult=orderRepository.findByType(Status.COMPLETE)
+        final List<Orders> orderResult=orderRepository.findByType(Status.COMPLETE);
         //then
-        assertEquals(orderResult.getType(),Status.COMPLETE);
+        assertEquals(orderResult.size(),2);
     }
 }
