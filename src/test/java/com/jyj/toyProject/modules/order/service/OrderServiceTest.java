@@ -35,12 +35,23 @@ class OrderServiceTest {
 
     @Test
     @DisplayName("이미 완성된 주문 조회")
-    public void  주문조회() throws Exception{
+    public void  이미완성된주문조회() throws Exception{
         //given
         dummyTest.setup();
         //when
         final List<Orders> orderResult=orderRepository.findByType(Status.COMPLETE);
         //then
         assertEquals(orderResult.size(),2);
+    }
+
+    @Test
+    @DisplayName("결제 대기 중인 주문 조회")
+    public void  결제대기중인주문조회() throws Exception{
+        //given
+        dummyTest.setup();
+        //when
+        final List<Orders> orderResult=orderRepository.findByType(Status.WAIT);
+        //then
+        assertEquals(orderResult.size(),0);
     }
 }
