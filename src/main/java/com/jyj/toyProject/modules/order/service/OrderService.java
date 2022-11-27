@@ -36,7 +36,7 @@ public class OrderService {
      *  주문 취소
      */
     @Transactional
-    public Long cancelOrder(Orders order) {
+    public void cancelOrder(Orders order) {
 
         if(order.getType().equals(Status.COMPLETE)){
 
@@ -44,7 +44,8 @@ public class OrderService {
 
         }
 
-        return orderRepository.save(order).getId();
+        order.changeStatus(Status.CANCEL);
+
     }
 
 }

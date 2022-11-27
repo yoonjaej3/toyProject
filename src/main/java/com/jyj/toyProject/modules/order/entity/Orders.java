@@ -45,4 +45,12 @@ public class Orders extends BaseEntity {
     @Column(name= "pay_date")
     private LocalDateTime payDate;
 
+    public void changeStatus(Status type){
+
+        this.type = type;
+
+    }
+
+
+
 }
