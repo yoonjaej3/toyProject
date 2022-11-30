@@ -1,5 +1,6 @@
 package com.jyj.toyProject.modules.member.service;
 
+import com.jyj.toyProject.modules.member.dto.MemberDto;
 import com.jyj.toyProject.modules.member.entity.Member;
 import com.jyj.toyProject.modules.member.repository.interfaces.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -39,4 +40,8 @@ public class MemberService {
     }
 
 
+    public List<Member> findMembers() {
+
+        return memberRepository.findAll();
+    }
 }
