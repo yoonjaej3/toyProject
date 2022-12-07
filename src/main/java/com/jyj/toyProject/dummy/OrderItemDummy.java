@@ -1,10 +1,10 @@
 package com.jyj.toyProject.dummy;
 
-import com.jyj.toyProject.modules.item.entity.Item;
-import com.jyj.toyProject.modules.order.entity.OrderItem;
-import com.jyj.toyProject.modules.order.entity.Orders;
+import com.jyj.toyProject.api.item.entity.Item;
+import com.jyj.toyProject.api.order.entity.OrderItem;
+import com.jyj.toyProject.api.order.entity.Orders;
 
-import com.jyj.toyProject.modules.order.repository.interfaces.OrderItemRepository;
+import com.jyj.toyProject.api.order.repository.interfaces.OrderItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;

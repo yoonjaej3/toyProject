@@ -1,15 +1,14 @@
 package com.jyj.toyProject.dummy;
 
-import com.jyj.toyProject.modules.member.entity.Member;
-import com.jyj.toyProject.modules.order.entity.Orders;
-import com.jyj.toyProject.modules.order.enums.PayType;
-import com.jyj.toyProject.modules.order.enums.Status;
-import com.jyj.toyProject.modules.order.repository.interfaces.OrderRepository;
+import com.jyj.toyProject.api.member.entity.Member;
+import com.jyj.toyProject.api.order.entity.Orders;
+import com.jyj.toyProject.api.order.enums.PayType;
+import com.jyj.toyProject.api.order.enums.Status;
+import com.jyj.toyProject.api.order.repository.interfaces.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Component

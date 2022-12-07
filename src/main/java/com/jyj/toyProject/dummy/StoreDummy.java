@@ -1,9 +1,9 @@
 package com.jyj.toyProject.dummy;
 
 
-import com.jyj.toyProject.modules.festival.entity.Festival;
-import com.jyj.toyProject.modules.store.entity.Store;
-import com.jyj.toyProject.modules.store.repository.interfaces.StoreRepository;
+import com.jyj.toyProject.api.festival.entity.Festival;
+import com.jyj.toyProject.api.store.entity.Store;
+import com.jyj.toyProject.api.store.repository.interfaces.StoreRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;

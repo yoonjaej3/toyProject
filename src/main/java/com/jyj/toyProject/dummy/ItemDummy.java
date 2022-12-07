@@ -1,8 +1,8 @@
 package com.jyj.toyProject.dummy;
 
-import com.jyj.toyProject.modules.item.entity.Item;
-import com.jyj.toyProject.modules.item.repository.interfaces.ItemRepository;
-import com.jyj.toyProject.modules.store.entity.Store;
+import com.jyj.toyProject.api.item.entity.Item;
+import com.jyj.toyProject.api.item.repository.interfaces.ItemRepository;
+import com.jyj.toyProject.api.store.entity.Store;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;

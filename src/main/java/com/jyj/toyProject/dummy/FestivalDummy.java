@@ -1,13 +1,12 @@
 package com.jyj.toyProject.dummy;
 
-import com.jyj.toyProject.modules.festival.entity.Festival;
-import com.jyj.toyProject.modules.festival.repository.interfaces.FestivalRepository;
+import com.jyj.toyProject.api.festival.entity.Festival;
+import com.jyj.toyProject.api.festival.repository.interfaces.FestivalRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Component
 @RequiredArgsConstructor

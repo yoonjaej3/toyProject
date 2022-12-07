@@ -1,9 +1,9 @@
 package com.jyj.toyProject.dummy;
 
 
-import com.jyj.toyProject.modules.member.entity.Member;
-import com.jyj.toyProject.modules.member.enums.Type;
-import com.jyj.toyProject.modules.member.repository.interfaces.MemberRepository;
+import com.jyj.toyProject.api.member.entity.Member;
+import com.jyj.toyProject.api.member.enums.Type;
+import com.jyj.toyProject.api.member.repository.interfaces.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
