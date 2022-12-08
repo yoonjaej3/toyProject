@@ -27,4 +27,15 @@ public class MemberDto {
         this.type=member.getType();
     }
 
+    public Member toEntity(){
+
+        return Member.builder()
+                .name(name)
+                .phone(phone)
+                .email(email)
+                .type(type)
+                .build();
+
+    }
+
 }

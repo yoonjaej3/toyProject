@@ -38,9 +38,27 @@ public class MemberService {
 
     }
 
-
+    /**
+     *  사용자 조회
+     */
     public List<Member> findMembers() {
 
         return memberRepository.findAll();
     }
+
+    /**
+     *  사용자 삭제
+     */
+    public void deleteMember(Long memberId){
+
+        Member member = memberRepository.getById(memberId);
+
+        memberRepository.delete(member);
+
+    }
+
+    /**
+     *  사용자 수정
+     */
+
 }

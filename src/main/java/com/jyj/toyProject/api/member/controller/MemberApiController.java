@@ -1,6 +1,7 @@
 package com.jyj.toyProject.api.member.controller;
 
 import com.jyj.toyProject.api.member.dto.MemberBuyerDto;
+import com.jyj.toyProject.api.member.dto.MemberDto;
 import com.jyj.toyProject.api.member.dto.MemberOrganizerDto;
 import com.jyj.toyProject.api.member.dto.MemberSellerDto;
 import com.jyj.toyProject.api.member.entity.Member;
@@ -9,9 +10,9 @@ import com.jyj.toyProject.api.member.repository.impl.MemberQueryRepository;
 import com.jyj.toyProject.api.member.repository.interfaces.MemberRepository;
 import com.jyj.toyProject.api.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -59,13 +60,21 @@ public class MemberApiController {
 
     }
 
-    //TODO :저장
+    @PostMapping("/members")
+    public Long register(@RequestBody MemberDto memberdto){
 
-    //TODO : 삭제
+        return memberService.registerMember(memberdto.toEntity());
+
+    }
+
+    @Transactional
+    @DeleteMapping("/members/{id}")
+    public void delete(@PathVariable("id") Long memberId){
+
+        memberService.deleteMember(memberId);
+
+    }
 
     //TODO : 업데이트
-
-
-
 
 }
