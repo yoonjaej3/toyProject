@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -75,6 +76,16 @@ public class MemberApiController {
 
     }
 
-    //TODO : 업데이트
+    @Transactional
+    @PutMapping("/members")
+    public String update(@RequestBody MemberDto memberDto){
+
+        Optional<Member> member = memberRepository.findById(memberDto.getId());
+
+        member.ifPresent(m->memberService.updateMember(memberDto.getId(),memberDto.getName()));
+
+        return "성공";
+
+    }
 
 }

@@ -60,5 +60,13 @@ public class MemberService {
     /**
      *  사용자 수정
      */
+    @Transactional
+    public void updateMember(Long id, String name){
+
+        Member member = memberRepository.getById(id);
+
+        member.setName(name);
+
+    }
 
 }
