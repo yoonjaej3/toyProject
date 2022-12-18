@@ -42,13 +42,14 @@ public class OrderApiController {
 
     }
 
-    //TODO : 등록
     @PostMapping("/orders/")
-    public long register(@RequestBody OrderDto orderDto){
+    public String register(@RequestBody OrderDto orderDto){
 
-        //orderIndto 만들지 아닐지
-        Optional<Orders> orders = orderRepository.findById(orderDto.getId)
+        Optional<Orders> orders = orderRepository.findById(orderDto.getId());
 
+        orderRepository.save(orderDto.toEntiity());
+
+        return "등록";
     }
     //TODO : 수정
 
