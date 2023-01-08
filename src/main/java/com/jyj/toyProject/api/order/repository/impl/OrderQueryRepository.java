@@ -37,13 +37,14 @@ public class OrderQueryRepository {
     }
 
     public List<OrderDto>findAllOrder(){
+
         return queryFactory.select(new QOrderDto(
-                        orders.member,
-                        orders.store,
-                        orders.request,
-                        orders.type,
-                        orders.payType,
-                        orders.payDate
+                orders.member,
+                orders.store,
+                orders.request,
+                orders.type,
+                orders.payType,
+                orders.payDate
                 ))
                 .from(orders)
                 .fetch();

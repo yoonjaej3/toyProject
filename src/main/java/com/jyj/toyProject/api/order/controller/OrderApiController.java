@@ -1,5 +1,8 @@
 package com.jyj.toyProject.api.order.controller;
 
+import com.jyj.toyProject.api.member.dto.MemberBuyerDto;
+import com.jyj.toyProject.api.member.enums.Type;
+import com.jyj.toyProject.api.member.repository.impl.MemberQueryRepository;
 import com.jyj.toyProject.api.order.dto.OrderDto;
 import com.jyj.toyProject.api.order.entity.Orders;
 import com.jyj.toyProject.api.order.repository.impl.OrderQueryRepository;
@@ -18,11 +21,14 @@ public class OrderApiController {
 
     private final OrderRepository orderRepository;
 
+    private final MemberQueryRepository memberQueryRepository;
     //주문 전체 조회
     @GetMapping("/orders")
     public List<OrderDto> orderList(){
 
-        return orderQueryRepository.findAllOrder();
+        List<OrderDto> orders = orderQueryRepository.findAllOrder();
+
+        return orders;
 
     }
 
@@ -42,15 +48,15 @@ public class OrderApiController {
 
     }
 
-    @PostMapping("/orders/")
-    public String register(@RequestBody OrderDto orderDto){
-
-        Optional<Orders> orders = orderRepository.findById(orderDto.getId());
-
-        orderRepository.save(orderDto.toEntiity());
-
-        return "등록";
-    }
+//    @PostMapping("/orders/")
+//    public String register(@RequestBody OrderDto orderDto){
+//
+//        Optional<Orders> orders = orderRepository.findById(orderDto.getId());
+//
+//        orderRepository.save(orderDto.toEntiity());
+//
+//        return "등록";
+//    }
     //TODO : 수정
 
     //TODO : 삭제

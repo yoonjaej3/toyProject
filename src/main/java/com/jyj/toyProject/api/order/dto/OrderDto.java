@@ -14,19 +14,18 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor
 public class OrderDto {
-    private Long id;
-    private Member member;
-    private Store store;
+
     private String request;
     private Status type;
     private PayType payType;
     private LocalDateTime payDate;
+    private String memberName;
+    private String storeName;
 
     @QueryProjection
-    public OrderDto(Long id , Member member, Store store, String request, Status type, PayType payType, LocalDateTime payDate) {
-        this.id = id;
-        this.member = member;
-        this.store=store;
+    public OrderDto(Member member, Store store, String request, Status type, PayType payType, LocalDateTime payDate) {
+        this.memberName = member.getName();
+        this.storeName=store.getName();
         this.request = request;
         this.type = type;
         this.payType = payType;
@@ -35,8 +34,8 @@ public class OrderDto {
 
     public Orders toEntiity(){
         return Orders.builder()
-                .member(member)
-                .store(store)
+//                .member(member)
+//                .store(store)
                 .request(request)
                 .type(type)
                 .payDate(payDate)
