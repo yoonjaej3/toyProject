@@ -9,8 +9,8 @@ import javax.persistence.EntityManager;
 import java.util.List;
 
 import static com.jyj.toyProject.api.member.entity.QMember.member;
+import static com.jyj.toyProject.api.store.entity.QStore.store;
 import static com.jyj.toyProject.api.order.entity.QOrders.*;
-import static com.jyj.toyProject.api.store.entity.QStore.*;
 
 @Repository
 public class OrderQueryRepository {
@@ -20,10 +20,41 @@ public class OrderQueryRepository {
         this.queryFactory = new JPAQueryFactory(em);
     }
 
+    public List<OrderDto>findAllOrder(){
+
+        return queryFactory.select(new QOrderDto(
+                orders.member.name,
+                orders.store.name,
+                orders.request,
+                orders.type,
+                orders.payType,
+                orders.payDate
+                ))
+                .from(orders)
+                .fetch();
+
+    }
+
+    public List<OrderDto>findOrderByMemberId(Long memberId){
+        return queryFactory.select(new QOrderDto(
+                        orders.member.name,
+                        orders.store.name,
+                        orders.request,
+                        orders.type,
+                        orders.payType,
+                        orders.payDate
+                ))
+                .from(orders)
+                .join(orders.member,member)
+                .where(member.id.eq(memberId))
+                .fetch();
+
+    }
+
     public List<OrderDto>findOrderByStoreId(Long storeId){
         return queryFactory.select(new QOrderDto(
-                orders.member,
-                orders.store,
+                orders.member.name,
+                orders.store.name,
                 orders.request,
                 orders.type,
                 orders.payType,
@@ -36,34 +67,4 @@ public class OrderQueryRepository {
 
     }
 
-    public List<OrderDto>findAllOrder(){
-
-        return queryFactory.select(new QOrderDto(
-                orders.member,
-                orders.store,
-                orders.request,
-                orders.type,
-                orders.payType,
-                orders.payDate
-                ))
-                .from(orders)
-                .fetch();
-
-    }
-
-    public List<OrderDto>findBuyerOrderByStoreId(Long memberId){
-        return queryFactory.select(new QOrderDto(
-                        orders.member,
-                        orders.store,
-                        orders.request,
-                        orders.type,
-                        orders.payType,
-                        orders.payDate
-                ))
-                .from(orders)
-                .join(orders.member,member)
-                .where(member.id.eq(memberId))
-                .fetch();
-
-    }
 }

@@ -23,9 +23,9 @@ public class OrderDto {
     private String storeName;
 
     @QueryProjection
-    public OrderDto(Member member, Store store, String request, Status type, PayType payType, LocalDateTime payDate) {
-        this.memberName = member.getName();
-        this.storeName=store.getName();
+    public OrderDto(String memberName, String storeName,String request, Status type, PayType payType, LocalDateTime payDate) {
+        this.memberName = memberName;
+        this.storeName=storeName;
         this.request = request;
         this.type = type;
         this.payType = payType;
@@ -34,8 +34,6 @@ public class OrderDto {
 
     public Orders toEntiity(){
         return Orders.builder()
-//                .member(member)
-//                .store(store)
                 .request(request)
                 .type(type)
                 .payDate(payDate)
