@@ -17,8 +17,11 @@ public class Festival extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="festival_id")
-    private Long id;
+    @Column(name="festival_seq")
+    private Long seq;
+
+    @Column(name="festival_id",nullable=false,unique=true)
+    private String id;
 
     @Column(nullable = false,unique = true)
     private String name;

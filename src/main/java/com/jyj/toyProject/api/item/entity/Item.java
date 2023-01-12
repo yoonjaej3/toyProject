@@ -15,9 +15,11 @@ public class Item extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="item_id")
-    private Long id;
+    @Column(name="item_seq")
+    private Long seq;
 
+    @Column(name="item_id",nullable=false,unique=true)
+    private String id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="store_id",nullable = false)

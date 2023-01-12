@@ -20,8 +20,11 @@ public class Orders extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="order_id")
-    private Long id;
+    @Column(name="order_seq")
+    private Long seq;
+
+    @Column(name="order_id",nullable=false,unique=true)
+    private String id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="member_id",nullable = false)

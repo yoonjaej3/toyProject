@@ -16,13 +16,16 @@ public class Store extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="store_id")
-    private Long id;
+    @Column(name="store_seq")
+    private Long Seq;
+
+    @Id
+    @Column(name="store_id",nullable=false,unique=true)
+    private String id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="festival_id",nullable = false)
     private Festival festival;
-
 
     @Column(nullable = false,unique = true)
     private String name;
