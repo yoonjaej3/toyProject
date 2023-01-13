@@ -24,7 +24,7 @@ public class MemberService {
 
         Optional.ofNullable(member.getEmail()).orElseThrow(() -> new IllegalStateException("이메일은 필수 입력 값입니다."));
 
-        return memberRepository.save(member).getId();
+        return memberRepository.save(member).getSeq();
     }
 
     /**
@@ -32,7 +32,7 @@ public class MemberService {
      */
     public boolean validateDuplicateMember(Member member) {
 
-        List<Member> memberList = memberRepository.findAllByEmail(member.getId());
+        List<Member> memberList = memberRepository.findAllByEmail(member.getSeq());
 
         return memberList.isEmpty();
 

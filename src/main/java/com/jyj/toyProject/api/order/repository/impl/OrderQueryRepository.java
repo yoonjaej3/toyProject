@@ -46,7 +46,7 @@ public class OrderQueryRepository {
                 ))
                 .from(orders)
                 .join(orders.member,member)
-                .where(member.id.eq(memberId))
+                .where(member.seq.eq(memberId))
                 .fetch();
 
     }
@@ -62,7 +62,7 @@ public class OrderQueryRepository {
         ))
                 .from(orders)
                 .join(orders.store,store)
-                .where(store.id.eq(storeId))
+                .where(store.seq.eq(storeId))
                 .fetch();
 
     }

@@ -80,9 +80,9 @@ public class MemberApiController {
     @PutMapping("/members")
     public String update(@RequestBody MemberDto memberDto){
 
-        Optional<Member> member = memberRepository.findById(memberDto.getId());
+        Optional<Member> member = memberRepository.findById(memberDto.getSeq());
 
-        member.ifPresent(m->memberService.updateMember(memberDto.getId(),memberDto.getName()));
+        member.ifPresent(m->memberService.updateMember(memberDto.getSeq(),memberDto.getName()));
 
         return "성공";
 
