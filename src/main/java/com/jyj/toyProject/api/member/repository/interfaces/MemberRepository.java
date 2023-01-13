@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface MemberRepository extends JpaRepository<Member,Long> {
     List<Member> findAllByEmail(Long id);
+    Member findSeqById(String id);
 }

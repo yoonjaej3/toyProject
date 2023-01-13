@@ -1,8 +1,14 @@
 package com.jyj.toyProject.api.order.service;
 
+
+import com.jyj.toyProject.api.member.entity.Member;
+import com.jyj.toyProject.api.member.repository.interfaces.MemberRepository;
+import com.jyj.toyProject.api.order.dto.OrderRequestDto;
 import com.jyj.toyProject.api.order.entity.Orders;
 import com.jyj.toyProject.api.order.enums.Status;
 import com.jyj.toyProject.api.order.repository.interfaces.OrderRepository;
+import com.jyj.toyProject.api.store.entity.Store;
+import com.jyj.toyProject.api.store.repository.interfaces.StoreRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -18,15 +24,25 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
 
+    private final MemberRepository  memmberRepository;
+
+    private final StoreRepository storeRepository;
     /**
      *  주문 등록
      */
     @Transactional
-    public Long registerOrder(Orders order) {
+    public void registerOrder(OrderRequestDto orderRequestDto) {
+
+        Member member = memmberRepository.findSeqById(orderRequestDto.getMemberId());
+
+        Store store = storeRepository.findSeqById(orderRequestDto.getStoreId());
+
+        Orders order = orderRequestDto.toEntiity(member,store);
+
 
         Optional.ofNullable(order.getStore()).orElseThrow(() -> new IllegalStateException("가게명은 필수 입력 값입니다."));
 
-        return orderRepository.save(order).getSeq();
+        orderRepository.save(order);
     }
 
     /**

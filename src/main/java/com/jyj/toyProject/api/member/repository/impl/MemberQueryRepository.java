@@ -1,5 +1,6 @@
 package com.jyj.toyProject.api.member.repository.impl;
 import com.jyj.toyProject.api.member.dto.*;
+import com.jyj.toyProject.api.member.entity.Member;
 import com.jyj.toyProject.api.member.enums.Type;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.stereotype.Repository;
@@ -51,4 +52,12 @@ public class MemberQueryRepository  {
                 .from(member)
                 .fetch();
     }
+
+    public List<Member> findSeqById(String id){
+        return queryFactory.select(member)
+                .from(member)
+                .where(member.id.eq(id))
+                .fetch();
+    }
+
 }

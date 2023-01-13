@@ -13,22 +13,22 @@ import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor
-public class OrderDto {
+public class OrderResponeDto {
 
     private String orderId;
     private String request;
     private Status type;
     private PayType payType;
     private LocalDateTime payDate;
-    private String memberName;
-    private String storeName;
+    private String memberId;
+    private String storeId;
 
 
     @QueryProjection
-    public OrderDto(String memberName, String orderId,String storeName,String request, Status type, PayType payType, LocalDateTime payDate) {
+    public OrderResponeDto(String orderId, String memberId, String storeId, String request, Status type, PayType payType, LocalDateTime payDate) {
         this.orderId=orderId;
-        this.memberName = memberName;
-        this.storeName=storeName;
+        this.memberId = memberId;
+        this.storeId=storeId;
         this.request = request;
         this.type = type;
         this.payType = payType;

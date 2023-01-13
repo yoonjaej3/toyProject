@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 public class Orders extends BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name="order_seq")
     private Long seq;
 

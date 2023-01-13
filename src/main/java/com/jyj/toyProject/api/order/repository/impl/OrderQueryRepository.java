@@ -1,7 +1,7 @@
 package com.jyj.toyProject.api.order.repository.impl;
 
-import com.jyj.toyProject.api.order.dto.OrderDto;
-import com.jyj.toyProject.api.order.dto.QOrderDto;
+import com.jyj.toyProject.api.order.dto.OrderResponeDto;
+import com.jyj.toyProject.api.order.dto.QOrderResponeDto;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.stereotype.Repository;
 
@@ -20,12 +20,12 @@ public class OrderQueryRepository {
         this.queryFactory = new JPAQueryFactory(em);
     }
 
-    public List<OrderDto>findAllOrder(){
+    public List<OrderResponeDto>findAllOrder(){
 
-        return queryFactory.select(new QOrderDto(
+        return queryFactory.select(new QOrderResponeDto(
                 orders.id,
-                orders.member.name,
-                orders.store.name,
+                orders.member.id,
+                orders.store.id,
                 orders.request,
                 orders.type,
                 orders.payType,
@@ -36,8 +36,8 @@ public class OrderQueryRepository {
 
     }
 
-    public List<OrderDto>findOrderByMemberId(Long memberId){
-        return queryFactory.select(new QOrderDto(
+    public List<OrderResponeDto>findOrderByMemberId(Long memberId){
+        return queryFactory.select(new QOrderResponeDto(
                         orders.id,
                         orders.member.name,
                         orders.store.name,
@@ -53,8 +53,8 @@ public class OrderQueryRepository {
 
     }
 
-    public List<OrderDto>findOrderByStoreId(Long storeId){
-        return queryFactory.select(new QOrderDto(
+    public List<OrderResponeDto>findOrderByStoreId(Long storeId){
+        return queryFactory.select(new QOrderResponeDto(
                 orders.id,
                 orders.member.name,
                 orders.store.name,
