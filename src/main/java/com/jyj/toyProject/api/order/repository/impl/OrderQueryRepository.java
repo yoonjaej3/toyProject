@@ -23,6 +23,7 @@ public class OrderQueryRepository {
     public List<OrderDto>findAllOrder(){
 
         return queryFactory.select(new QOrderDto(
+                orders.id,
                 orders.member.name,
                 orders.store.name,
                 orders.request,
@@ -37,6 +38,7 @@ public class OrderQueryRepository {
 
     public List<OrderDto>findOrderByMemberId(Long memberId){
         return queryFactory.select(new QOrderDto(
+                        orders.id,
                         orders.member.name,
                         orders.store.name,
                         orders.request,
@@ -53,6 +55,7 @@ public class OrderQueryRepository {
 
     public List<OrderDto>findOrderByStoreId(Long storeId){
         return queryFactory.select(new QOrderDto(
+                orders.id,
                 orders.member.name,
                 orders.store.name,
                 orders.request,
