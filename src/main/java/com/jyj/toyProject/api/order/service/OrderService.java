@@ -6,6 +6,7 @@ import com.jyj.toyProject.api.member.repository.interfaces.MemberRepository;
 import com.jyj.toyProject.api.order.dto.OrderRequestDto;
 import com.jyj.toyProject.api.order.entity.Orders;
 import com.jyj.toyProject.api.order.enums.Status;
+import com.jyj.toyProject.api.order.repository.impl.OrderQueryRepository;
 import com.jyj.toyProject.api.order.repository.interfaces.OrderRepository;
 import com.jyj.toyProject.api.store.entity.Store;
 import com.jyj.toyProject.api.store.repository.interfaces.StoreRepository;
@@ -27,6 +28,8 @@ public class OrderService {
     private final MemberRepository  memmberRepository;
 
     private final StoreRepository storeRepository;
+
+    private final OrderQueryRepository orderQueryRepository;
     /**
      *  주문 등록
      */
@@ -42,14 +45,16 @@ public class OrderService {
 
         Optional.ofNullable(order.getStore()).orElseThrow(() -> new IllegalStateException("가게명은 필수 입력 값입니다."));
 
-        orderRepository.save(order);
+        orderRepository.saveAndFlush(order);
     }
 
     /**
      *  주문 취소
      */
     @Transactional
-    public void cancelOrder(Orders order) {
+    public void cancelOrder(String orderId) {
+
+        Orders order =orderQueryRepository.findOrderByOrderId(orderId);
 
         if(order.getType().equals(Status.COMPLETE)){
 
