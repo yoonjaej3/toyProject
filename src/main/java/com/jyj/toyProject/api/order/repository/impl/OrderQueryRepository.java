@@ -2,6 +2,7 @@ package com.jyj.toyProject.api.order.repository.impl;
 
 import com.jyj.toyProject.api.order.dto.OrderResponeDto;
 import com.jyj.toyProject.api.order.dto.QOrderResponeDto;
+import com.jyj.toyProject.api.order.entity.Orders;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.stereotype.Repository;
 
@@ -70,4 +71,11 @@ public class OrderQueryRepository {
 
     }
 
+    public Orders findOrderByOrderId(String orderId){
+        return queryFactory.select(orders)
+                .from(orders)
+                .where(orders.id.eq(orderId))
+                .fetch().get(0);
+
+    }
 }

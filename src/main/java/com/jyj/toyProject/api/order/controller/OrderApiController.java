@@ -2,7 +2,6 @@ package com.jyj.toyProject.api.order.controller;
 
 import com.jyj.toyProject.api.order.dto.OrderRequestDto;
 import com.jyj.toyProject.api.order.dto.OrderResponeDto;
-import com.jyj.toyProject.api.order.entity.Orders;
 import com.jyj.toyProject.api.order.repository.impl.OrderQueryRepository;
 import com.jyj.toyProject.api.order.repository.interfaces.OrderRepository;
 import com.jyj.toyProject.api.order.service.OrderService;
@@ -58,11 +57,9 @@ public class OrderApiController {
 
     @Transactional
     @PostMapping("/orders/cancel/{id}")
-    public String delete(@PathVariable("id") Long orderId){
+    public String delete(@PathVariable("id") String orderId){
 
-        Orders orders = orderRepository.getById(orderId);
-
-        orderService.cancelOrder(orders);
+        orderService.cancelOrder(orderId);
 
         return "주문취소";
 
