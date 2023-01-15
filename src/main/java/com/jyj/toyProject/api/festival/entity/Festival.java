@@ -27,8 +27,8 @@ public class Festival extends BaseEntity {
     private String name;
 
     @Column(name="start_date",nullable=false,unique=true)
-    private LocalDate startDate;
+    private String startDate;
 
     @Column(name="end_date",nullable=false,unique=true)
-    private LocalDate endDate;
+    private String endDate;
 }

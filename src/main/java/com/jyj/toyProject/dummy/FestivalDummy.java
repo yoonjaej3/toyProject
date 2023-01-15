@@ -15,7 +15,7 @@ public class FestivalDummy {
 
     private final FestivalRepository festivalRepository;
 
-    public Festival createFestival(String name,LocalDate startDate,LocalDate endDate){
+    public Festival createFestival(String name,String startDate,String endDate){
         Festival festival=Festival.builder()
                 .name(name)
                 .startDate(startDate)

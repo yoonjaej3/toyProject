@@ -1,4 +1,4 @@
 package com.jyj.toyProject.api.festival.service;
 
-public class service {
+public class FestivalService {
 }
