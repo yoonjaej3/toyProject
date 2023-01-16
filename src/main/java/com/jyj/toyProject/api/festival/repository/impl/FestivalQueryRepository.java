@@ -2,6 +2,7 @@ package com.jyj.toyProject.api.festival.repository.impl;
 
 import com.jyj.toyProject.api.festival.dto.FestivalResponseDto;
 import com.jyj.toyProject.api.festival.dto.QFestivalResponseDto;
+import com.jyj.toyProject.api.festival.entity.Festival;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.hibernate.sql.Select;
 import org.springframework.stereotype.Repository;
@@ -30,6 +31,13 @@ public class FestivalQueryRepository {
         ))
                 .from(festival)
                 .fetch();
+    }
+
+    public Festival findFestivalByFestivalId(String festivalId){
+        return queryFactory.select(festival)
+                .from(festival)
+                .where(festival.id.eq(festivalId))
+                .fetch().get(0);
     }
 
 }

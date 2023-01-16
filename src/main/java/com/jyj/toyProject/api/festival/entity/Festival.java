@@ -12,7 +12,6 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 @EqualsAndHashCode(callSuper = false)
-
 public class Festival extends BaseEntity {
 
     @Id
