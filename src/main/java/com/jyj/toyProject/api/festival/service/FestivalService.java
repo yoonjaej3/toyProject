@@ -34,7 +34,7 @@ public class FestivalService {
 
         Festival festival = festivalRequestDto.toEntity();
 
-        festivalRepository.saveAndFlush(festival);
+        festivalRepository.save(festival);
 
     }
 
