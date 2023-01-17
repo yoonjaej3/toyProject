@@ -45,7 +45,7 @@ public class OrderService {
 
         Optional.ofNullable(order.getStore()).orElseThrow(() -> new IllegalStateException("가게명은 필수 입력 값입니다."));
 
-        orderRepository.saveAndFlush(order);
+        orderRepository.save(order);
     }
 
     /**
