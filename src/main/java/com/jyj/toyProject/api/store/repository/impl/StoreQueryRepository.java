@@ -1,17 +1,12 @@
 package com.jyj.toyProject.api.store.repository.impl;
-
-
-import com.jyj.toyProject.api.member.entity.Member;
+import com.jyj.toyProject.api.store.dto.QStoreResponseDto;
+import com.jyj.toyProject.api.store.dto.StoreResponseDto;
 import com.jyj.toyProject.api.store.entity.QStore;
-
-import com.jyj.toyProject.api.store.entity.Store;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import java.util.List;
-
-import static com.jyj.toyProject.api.member.entity.QMember.member;
 
 @Repository
 public class StoreQueryRepository {
@@ -21,10 +16,16 @@ public class StoreQueryRepository {
         this.queryFactory = new JPAQueryFactory(em);
     }
 
-    public List<Store> findSeqById(String id){
-        return queryFactory.select(QStore.store)
+    public List<StoreResponseDto> findAllStore(){
+        return queryFactory.select(new QStoreResponseDto(
+
+                QStore.store.id,
+                QStore.store.festival,
+                QStore.store.name,
+                QStore.store.phone
+
+        ))
                 .from(QStore.store)
-                .where(QStore.store.id.eq(id))
                 .fetch();
     }
 }
