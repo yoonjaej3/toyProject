@@ -58,8 +58,8 @@ public class DummyTest {
 
         Festival festival = Festival.builder()
                 .name("여의도 불꽃놀이 축제")
-                .startDate(LocalDate.of(2022, 06, 01))
-                .endDate(LocalDate.of(2022, 07, 01))
+                .startDate("20220601")
+                .endDate("20220701")
                 .build();
 
         festivalRepository.save(festival);

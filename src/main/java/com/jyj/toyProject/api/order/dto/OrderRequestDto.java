@@ -6,12 +6,13 @@ import com.jyj.toyProject.api.order.enums.PayType;
 import com.jyj.toyProject.api.order.enums.Status;
 import com.jyj.toyProject.api.store.entity.Store;
 import com.querydsl.core.annotations.QueryProjection;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Getter
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 public class OrderRequestDto {
 
