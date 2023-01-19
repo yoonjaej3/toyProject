@@ -36,7 +36,7 @@ public class OrderRequestDto {
         this.payDate = payDate;
     }
 
-    public Orders toEntiity(Member member,Store store){
+    public Orders toEntity(Member member,Store store){
 
         return Orders.builder()
                 .id(orderId)

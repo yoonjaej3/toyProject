@@ -1,6 +1,7 @@
 package com.jyj.toyProject.api.order.controller;
 
 import com.jyj.toyProject.api.order.dto.OrderRequestDto;
+import com.jyj.toyProject.api.order.dto.OrderRequestSearchDto;
 import com.jyj.toyProject.api.order.dto.OrderResponeDto;
 import com.jyj.toyProject.api.order.repository.impl.OrderQueryRepository;
 import com.jyj.toyProject.api.order.repository.interfaces.OrderRepository;
@@ -21,29 +22,13 @@ public class OrderApiController {
 
     private final OrderService orderService;
 
-    //주문 전체 조회
+    //주문 조회
     @GetMapping("/orders")
-    public List<OrderResponeDto> orderList(){
+    public List<OrderResponeDto> orderList(@RequestBody OrderRequestSearchDto orderRequestSearchDto){
 
-        List<OrderResponeDto> orders = orderQueryRepository.findAllOrder();
+        List<OrderResponeDto> orders =  orderService.findOrder(orderRequestSearchDto);
 
         return orders;
-
-    }
-
-    //가게별 주문 조회
-    @GetMapping("/orders/{id}")
-    public List<OrderResponeDto> orderListByStore(@PathVariable("id") Long id){
-
-        return orderQueryRepository.findOrderByStoreId(id);
-
-    }
-
-    //회원별 주문 조회
-    @GetMapping("/orders/Buyer/{id}")
-    public List<OrderResponeDto> orderBuyerDtoList(@PathVariable("id") Long id){
-
-        return orderQueryRepository.findOrderByMemberId(id);
 
     }
 
