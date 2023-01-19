@@ -2,6 +2,7 @@ package com.jyj.toyProject.api.order.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jyj.toyProject.api.order.dto.OrderRequestDto;
+import com.jyj.toyProject.api.order.dto.OrderRequestSearchDto;
 import com.jyj.toyProject.api.order.entity.Orders;
 import com.jyj.toyProject.api.order.enums.PayType;
 import com.jyj.toyProject.api.order.enums.Status;
@@ -78,7 +79,7 @@ class OrderApiControllerTest    {
     }
 
     @Test
-    @DisplayName("/orders 요청시 주문 전체 조회")
+    @DisplayName("/orders 요청시 조회(검색어 조건 : 회원명,가게명)")
     public void 주문전체조회() throws Exception{
 
         //given
@@ -93,17 +94,22 @@ class OrderApiControllerTest    {
 
         orderService.registerOrder(orderRequestDto);
 
+        OrderRequestSearchDto orderRequestSearchDto = OrderRequestSearchDto.builder()
+                .memberName("주윤재")
+                .build();
+
         //when
-        Orders order = orderRepository.findAll().get(0);
+        Orders order  = orderRepository.findAll().get(0);
 
         //expected
         mockMvc.perform(MockMvcRequestBuilders
                         .get("/orders")
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].orderId").value(order.getId()))
-                .andExpect(jsonPath("$[0].request").value(order.getRequest()))
+                .andExpect(jsonPath("$[0].memberName").value(order.getMember().getName()))
                 .andDo(print());
+               // .andExpect(jsonPath("$[0].storeName").value(order..))
+
 
 
     }

@@ -1,6 +1,7 @@
 package com.jyj.toyProject.api.order.service;
 
 import com.jyj.toyProject.api.order.dto.OrderRequestDto;
+import com.jyj.toyProject.api.order.dto.OrderRequestSearchDto;
 import com.jyj.toyProject.dummy.DummyTest;
 import com.jyj.toyProject.api.festival.entity.Festival;
 import com.jyj.toyProject.api.festival.repository.interfaces.FestivalRepository;
@@ -19,6 +20,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -116,5 +118,35 @@ class OrderServiceTest {
         String expectedMessage = "결제 완료된 주문은 취소하실 수 없습니다.";
         String acutalMessage = exception.getMessage();
         assertEquals(acutalMessage,expectedMessage);
+    }
+
+    @Test
+    @DisplayName("주문조회")
+    public void  주문_조회() throws Exception{
+
+        //given
+        OrderRequestDto orderRequestDto = OrderRequestDto.builder()
+                .orderId("OOOOOO1")
+                .request("요청사항10000")
+                .payType(PayType.Card)
+                .memberId("MMMMMM1")
+                .storeId("SSSSSS1")
+                .type(Status.COMPLETE)
+                .build();
+
+        orderService.registerOrder(orderRequestDto);
+
+        OrderRequestSearchDto orderRequestSearchDto = OrderRequestSearchDto.builder()
+                .memberName("주윤재")
+                .build();
+
+        //when
+        orderService.findOrder(orderRequestSearchDto);
+
+        //then
+        assertEquals(1L,orderRepository.count());
+        Orders order = orderRepository.findAll().get(0);
+        assertEquals("OOOOOO1",order.getId());
+
     }
 }
