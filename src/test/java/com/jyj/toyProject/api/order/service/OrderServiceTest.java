@@ -2,6 +2,8 @@ package com.jyj.toyProject.api.order.service;
 
 import com.jyj.toyProject.api.order.dto.OrderRequestDto;
 import com.jyj.toyProject.api.order.dto.OrderRequestSearchDto;
+import com.jyj.toyProject.api.order.dto.OrderResponeDto;
+import com.jyj.toyProject.api.order.repository.impl.OrderQueryRepository;
 import com.jyj.toyProject.dummy.DummyTest;
 import com.jyj.toyProject.api.festival.entity.Festival;
 import com.jyj.toyProject.api.festival.repository.interfaces.FestivalRepository;
@@ -36,6 +38,9 @@ class OrderServiceTest {
 
     @Autowired
     OrderRepository orderRepository;
+
+    @Autowired
+    OrderQueryRepository orderQueryRepository;
 
 
     @BeforeEach
@@ -138,6 +143,7 @@ class OrderServiceTest {
 
         OrderRequestSearchDto orderRequestSearchDto = OrderRequestSearchDto.builder()
                 .memberName("주윤재")
+                .storeName("버거킹")
                 .build();
 
         //when
@@ -145,8 +151,11 @@ class OrderServiceTest {
 
         //then
         assertEquals(1L,orderRepository.count());
-        Orders order = orderRepository.findAll().get(0);
-        assertEquals("OOOOOO1",order.getId());
+        OrderResponeDto orderResponeDto = orderQueryRepository.findOrder(orderRequestSearchDto.getMemberName(),orderRequestSearchDto.getStoreName()).get(0);
+        assertEquals("OOOOOO1",orderResponeDto.getOrderId());
+        assertEquals("주윤재",orderResponeDto.getOrderId());
+        assertEquals("버거킹",orderResponeDto.getOrderId());
+
 
     }
 }
