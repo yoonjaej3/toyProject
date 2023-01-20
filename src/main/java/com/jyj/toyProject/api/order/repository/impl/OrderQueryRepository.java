@@ -34,7 +34,10 @@ public class OrderQueryRepository {
                 orders.request,
                 orders.type,
                 orders.payType,
-                orders.payDate
+                orders.payDate,
+                orders.member.name,
+                orders.store.name
+
                 ))
                 .from(orders)
 //                .where(eqMember(memberName),
