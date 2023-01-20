@@ -153,8 +153,8 @@ class OrderServiceTest {
         assertEquals(1L,orderRepository.count());
         OrderResponeDto orderResponeDto = orderQueryRepository.findOrder(orderRequestSearchDto.getMemberName(),orderRequestSearchDto.getStoreName()).get(0);
         assertEquals("OOOOOO1",orderResponeDto.getOrderId());
-        assertEquals("주윤재",orderResponeDto.getOrderId());
-        assertEquals("버거킹",orderResponeDto.getOrderId());
+        assertEquals("주윤재",orderResponeDto.getMemberName());
+        assertEquals("버거킹",orderResponeDto.getStoreName());
 
 
     }
