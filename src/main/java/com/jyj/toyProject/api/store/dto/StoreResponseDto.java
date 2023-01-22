@@ -10,27 +10,20 @@ import lombok.NoArgsConstructor;
 public class StoreResponseDto {
 
     private String storeId;
-    private Festival festival;
+    private String festivalId;
     private String name;
     private String phone;
+    String festivalName;
 
     @QueryProjection
-    public StoreResponseDto(String storeId, Festival festival, String name,String phone){
+    public StoreResponseDto(String storeId, String festivalId, String name,String phone,String festivalName){
 
         this.storeId = storeId;
-        this.festival = festival;
+        this.festivalId = festivalId;
         this.name = name;
         this.phone = phone;
+        this.festivalName = festivalName;
 
     }
 
-    public Store toEntity(){
-
-        return Store.builder()
-                .id(storeId)
-                .festival(festival)
-                .name(name)
-                .phone(phone)
-                .build();
-    }
 }
