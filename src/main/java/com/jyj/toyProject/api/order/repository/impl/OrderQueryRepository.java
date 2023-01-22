@@ -10,11 +10,6 @@ import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManager;
 import java.util.List;
-import java.util.Optional;
-import java.util.OptionalLong;
-
-import static com.jyj.toyProject.api.member.entity.QMember.member;
-import static com.jyj.toyProject.api.store.entity.QStore.store;
 import static com.jyj.toyProject.api.order.entity.QOrders.*;
 
 @Repository
@@ -40,8 +35,8 @@ public class OrderQueryRepository {
 
                 ))
                 .from(orders)
-//                .where(eqMember(memberName),
-//                        eqStore(storeName))
+                .where(eqMember(memberName),
+                        eqStore(storeName))
                 .fetch();
 
     }
@@ -49,7 +44,7 @@ public class OrderQueryRepository {
     private BooleanExpression eqMember(String name) {
 
         if (StringUtils.hasText(name))
-            return member.name.eq(name);
+            return orders.member.name.eq(name);
 
         return null;
     }
@@ -57,7 +52,7 @@ public class OrderQueryRepository {
     private BooleanExpression eqStore(String name) {
 
         if (StringUtils.hasText(name))
-            return store.name.eq(name);
+            return orders.store.name.eq(name);
 
         return null;
     }
