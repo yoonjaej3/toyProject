@@ -1,6 +1,7 @@
 package com.jyj.toyProject.api.store.controller;
 
 import com.jyj.toyProject.api.festival.dto.FestivalResponseDto;
+import com.jyj.toyProject.api.store.dto.StoreRequestSearchDto;
 import com.jyj.toyProject.api.store.dto.StoreResponseDto;
 import com.jyj.toyProject.api.store.repository.impl.StoreQueryRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,9 +18,9 @@ public class StoreApiController {
 
     //가게 전체 조회
     @GetMapping("/store")
-    public List<StoreResponseDto> storeList(){
+    public List<StoreResponseDto> storeList(StoreRequestSearchDto storeRequestSearchDto){
 
-        List<StoreResponseDto> store = storeQueryRepository.findAllStore();
+        List<StoreResponseDto> store = storeQueryRepository.findStore(storeRequestSearchDto.getFestivalName());
 
         return store;
 
