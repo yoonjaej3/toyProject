@@ -3,9 +3,11 @@ package com.jyj.toyProject.api.order.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jyj.toyProject.api.order.dto.OrderRequestDto;
 import com.jyj.toyProject.api.order.dto.OrderRequestSearchDto;
+import com.jyj.toyProject.api.order.dto.OrderResponeDto;
 import com.jyj.toyProject.api.order.entity.Orders;
 import com.jyj.toyProject.api.order.enums.PayType;
 import com.jyj.toyProject.api.order.enums.Status;
+import com.jyj.toyProject.api.order.repository.impl.OrderQueryRepository;
 import com.jyj.toyProject.api.order.repository.interfaces.OrderRepository;
 import com.jyj.toyProject.api.order.service.OrderService;
 import org.junit.jupiter.api.Assertions;
@@ -18,8 +20,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -37,6 +37,9 @@ class OrderApiControllerTest    {
 
     @Autowired
     private OrderRepository orderRepository;
+
+    @Autowired
+    private OrderQueryRepository orderQueryRepository;
 
     @Autowired
     private OrderService orderService;
@@ -98,7 +101,7 @@ class OrderApiControllerTest    {
                 .build();
 
         //when
-        Orders order  = orderRepository.findAll().get(0);
+        OrderResponeDto orderResponeDto = orderQueryRepository.findOrder(orderRequestSearchDto.getMemberName(),orderRequestSearchDto.getStoreName()).get(0);
 
         String json = objectMapper.writeValueAsString(orderRequestSearchDto);
 
@@ -109,7 +112,8 @@ class OrderApiControllerTest    {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].orderId").value(order.getId()))
+                .andExpect(jsonPath("$[0].orderId").value(orderResponeDto.getOrderId()))
+                .andExpect(jsonPath("$[0].memberName").value(orderResponeDto.getMemberName()))
                 .andDo(print());
 
     }
