@@ -4,30 +4,15 @@ import com.jyj.toyProject.api.order.dto.OrderRequestDto;
 import com.jyj.toyProject.api.order.dto.OrderRequestSearchDto;
 import com.jyj.toyProject.api.order.dto.OrderResponeDto;
 import com.jyj.toyProject.api.order.repository.impl.OrderQueryRepository;
-import com.jyj.toyProject.dummy.DummyTest;
-import com.jyj.toyProject.api.festival.entity.Festival;
-import com.jyj.toyProject.api.festival.repository.interfaces.FestivalRepository;
-import com.jyj.toyProject.api.member.entity.Member;
-import com.jyj.toyProject.api.member.enums.Type;
-import com.jyj.toyProject.api.member.repository.interfaces.MemberRepository;
 import com.jyj.toyProject.api.order.entity.Orders;
 import com.jyj.toyProject.api.order.enums.PayType;
 import com.jyj.toyProject.api.order.enums.Status;
 import com.jyj.toyProject.api.order.repository.interfaces.OrderRepository;
-import com.jyj.toyProject.api.store.entity.Store;
-import com.jyj.toyProject.api.store.repository.interfaces.StoreRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import javax.transaction.Transactional;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest

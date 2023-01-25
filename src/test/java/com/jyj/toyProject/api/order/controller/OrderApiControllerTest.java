@@ -8,6 +8,7 @@ import com.jyj.toyProject.api.order.enums.PayType;
 import com.jyj.toyProject.api.order.enums.Status;
 import com.jyj.toyProject.api.order.repository.interfaces.OrderRepository;
 import com.jyj.toyProject.api.order.service.OrderService;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,7 +19,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -44,7 +46,6 @@ class OrderApiControllerTest    {
         orderRepository.deleteAll();
     }
 
-
     @Test
     @DisplayName("/orders/register 요청시 주문 등록")
     public void 주문등록() throws Exception{
@@ -59,22 +60,20 @@ class OrderApiControllerTest    {
                 .type(Status.COMPLETE)
                 .build();
 
+        String json = objectMapper.writeValueAsString(orderRequestDto);
 
+       mockMvc.perform(post("/orders/register")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json))
+                .andExpect(status().isOk())
+                .andDo(print());
 
         //when
-        orderService.registerOrder(orderRequestDto);
-
         Orders order = orderRepository.findAll().get(0);
 
         //expected
-        mockMvc.perform(MockMvcRequestBuilders
-                        .get("/orders")
-                        .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].orderId").value(order.getId()))
-                .andExpect(jsonPath("$[0].request").value(order.getRequest()))
-                .andDo(print());
-
+        Assertions.assertEquals("OOOOOO1",order.getId());
 
     }
 
@@ -101,16 +100,17 @@ class OrderApiControllerTest    {
         //when
         Orders order  = orderRepository.findAll().get(0);
 
+        String json = objectMapper.writeValueAsString(orderRequestSearchDto);
+
         //expected
         mockMvc.perform(MockMvcRequestBuilders
-                        .get("/orders")
-                        .accept(MediaType.APPLICATION_JSON))
+                        .post("/orders")
+                        .accept(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(json))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].memberName").value(order.getMember().getName()))
+                .andExpect(jsonPath("$[0].orderId").value(order.getId()))
                 .andDo(print());
-               // .andExpect(jsonPath("$[0].storeName").value(order..))
-
-
 
     }
 }
