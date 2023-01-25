@@ -23,7 +23,7 @@ public class OrderApiController {
     private final OrderService orderService;
 
     //주문 조회
-    @GetMapping("/orders")
+    @PostMapping("/orders")
     public List<OrderResponeDto> orderList(@RequestBody OrderRequestSearchDto orderRequestSearchDto){
 
         List<OrderResponeDto> orders =  orderService.findOrder(orderRequestSearchDto);
