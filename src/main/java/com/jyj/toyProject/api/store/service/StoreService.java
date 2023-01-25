@@ -45,10 +45,10 @@ public class StoreService {
     }
 
     /**
-     *  주문 등록
+     *  가게 등록
      */
     @Transactional
-    public void registerStroe(StoreRequestDto storeRequestDto) {
+    public void registerStore(StoreRequestDto storeRequestDto) {
 
         Festival festival = festivalQueryRepository.findFestivalByFestivalId(storeRequestDto.getFestivalId());
 
