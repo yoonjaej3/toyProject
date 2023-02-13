@@ -45,11 +45,11 @@ public class ItemService {
     @Transactional
     public void registerItem(ItemRequestDto itemRequestDto) {
 
-        Store store = storeRepository.findSeqById(itemRequestDto.getStore().getId());
+        Store store = storeRepository.findSeqById(itemRequestDto.getStoreId());
 
         Item item = itemRequestDto.toEntity(store);
 
-        Optional.ofNullable(itemRequestDto.getStore()).orElseThrow(() -> new IllegalStateException("가게명은 필수 입력 값입니다."));
+        Optional.ofNullable(item.getStore()).orElseThrow(() -> new IllegalStateException("가게명은 필수 입력 값입니다."));
 
         itemRepository.save(item);
 

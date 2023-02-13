@@ -20,18 +20,18 @@ import java.time.LocalDateTime;
 
 @Getter
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
 public class ItemRequestDto {
 
     private String itemId;
-    private Store store;
+    private String storeId;
     private String name;
     private Long price;
 
     @QueryProjection
-    public ItemRequestDto(String itemId,String name, Long price) {
+    public ItemRequestDto(String itemId,String storeId, String name, Long price) {
         this.itemId=itemId;
+        this.storeId=storeId;
         this.name = name;
         this.price = price;
     }

@@ -22,7 +22,7 @@ public class Item extends BaseEntity {
     private String id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="store_id",nullable = false)
+    @JoinColumn(name="store_seq",nullable = false)
     private Store store;
 
     @Column(nullable = false,unique = true)
@@ -31,9 +31,9 @@ public class Item extends BaseEntity {
     @Column(nullable = false,unique = true)
     private Long price;
 
-    @Column(name="image_file_name", nullable = false,unique = true)
+    @Column(name="image_file_name")
     private String imageFileName;
 
-    @Column(name="image_file_url", nullable = false,unique = true)
+    @Column(name="image_file_url")
     private String imageFileUrl;
 }
