@@ -19,9 +19,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class StoreApiController {
 
-    private static StoreQueryRepository storeQueryRepository;
+    private final StoreQueryRepository storeQueryRepository;
 
-    private static StoreService storeService;
+    private final StoreService storeService;
 
     //가게 전체 조회
     @GetMapping("/store")
