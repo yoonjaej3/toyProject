@@ -30,7 +30,8 @@ public class ItemQueryRepository {
         return queryFactory.select(new QItemResponseDto(
                 item.id,
                 item.name,
-                item.price
+                item.price,
+                item.store.name
         ))
                 .from(item)
                 .where(eqStore(storeName))

@@ -12,11 +12,10 @@ public class ItemRequestSearchDto {
 
     private String storeName;
 
-
     @QueryProjection
     public ItemRequestSearchDto(String storeName) {
 
-        this.storeName=storeName;
+        this.storeName = storeName;
     }
 
 }

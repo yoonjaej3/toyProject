@@ -20,17 +20,17 @@ import java.time.LocalDateTime;
 public class ItemResponseDto {
 
     private String itemId;
-    private Store store;
+    private String storeName;
     private String name;
     private Long price;
 
-
     @QueryProjection
-    public ItemResponseDto(String itemId,String name,Long price) {
+    public ItemResponseDto(String itemId,String name,Long price,String storeName) {
 
         this.itemId=itemId;
         this.name = name;
         this.price=price;
+        this.storeName = storeName;
         
     }
 
