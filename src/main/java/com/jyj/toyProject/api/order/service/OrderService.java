@@ -1,8 +1,11 @@
 package com.jyj.toyProject.api.order.service;
 
 
+import com.jyj.toyProject.api.item.entity.Item;
+import com.jyj.toyProject.api.item.repository.interfaces.ItemRepository;
 import com.jyj.toyProject.api.member.entity.Member;
 import com.jyj.toyProject.api.member.repository.interfaces.MemberRepository;
+import com.jyj.toyProject.api.order.collection.Commission;
 import com.jyj.toyProject.api.order.dto.OrderRequestDto;
 import com.jyj.toyProject.api.order.dto.OrderRequestSearchDto;
 import com.jyj.toyProject.api.order.dto.OrderResponeDto;
@@ -32,7 +35,7 @@ public class OrderService {
 
     private final MemberRepository  memmberRepository;
 
-    private final StoreRepository storeRepository;
+    private final ItemRepository itemRepository;
 
     private final OrderQueryRepository orderQueryRepository;
 
@@ -42,7 +45,7 @@ public class OrderService {
     @Transactional
     public List<OrderResponeDto> findOrder(OrderRequestSearchDto orderRequestSearchDto) {
 
-        return orderQueryRepository.findOrder(orderRequestSearchDto.getMemberName(),orderRequestSearchDto.getStoreName());
+        return orderQueryRepository.findOrder(orderRequestSearchDto.getMemberName(),orderRequestSearchDto.getItemName());
 
     }
 
@@ -52,7 +55,7 @@ public class OrderService {
     @Transactional
     public List<OrderResponeDto> findOrderByPaging(OrderRequestSearchDto orderRequestSearchDto, Pageable pageable) {
 
-        return orderQueryRepository.findOrderByPaging(pageable,orderRequestSearchDto.getMemberName(),orderRequestSearchDto.getStoreName());
+        return orderQueryRepository.findOrderByPaging(pageable,orderRequestSearchDto.getMemberName(),orderRequestSearchDto.getItemName());
 
     }
 
@@ -65,12 +68,14 @@ public class OrderService {
 
         Member member = memmberRepository.findSeqById(orderRequestDto.getMemberId());
 
-        Store store = storeRepository.findSeqById(orderRequestDto.getStoreId());
+        Item item = itemRepository.findSeqById(orderRequestDto.getItemId());
 
-        Orders order = orderRequestDto.toEntity(member,store);
+        Orders order = orderRequestDto.toEntity(member,item);
 
+        //TODO : priceSet
+        Commission commission = new Commission(order);
 
-        Optional.ofNullable(order.getStore()).orElseThrow(() -> new IllegalStateException("가게명은 필수 입력 값입니다."));
+        Optional.ofNullable(order.getItem()).orElseThrow(() -> new IllegalStateException("메뉴명은 필수 입력 값입니다."));
 
         orderRepository.save(order);
     }
