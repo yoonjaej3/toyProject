@@ -13,7 +13,8 @@ import java.util.List;
 import static com.jyj.toyProject.api.order.entity.QOrders.*;
 
 @Repository
-public class OrderQueryRepository {
+public class OrderQueryRepository{
+
     private final JPAQueryFactory queryFactory;
 
     public OrderQueryRepository(EntityManager em) {
@@ -62,6 +63,29 @@ public class OrderQueryRepository {
                 .from(orders)
                 .where(orders.id.eq(orderId))
                 .fetch().get(0);
+
+    }
+
+    public List<OrderResponeDto> findOrderByPaging(int pageSize,int page, String memberName, String storeName) {
+
+        return queryFactory.select(new QOrderResponeDto(
+                        orders.id,
+                        orders.member.id,
+                        orders.store.id,
+                        orders.request,
+                        orders.type,
+                        orders.payType,
+                        orders.payDate,
+                        orders.member.name,
+                        orders.store.name
+
+                ))
+                .from(orders)
+                .where(eqMember(memberName),
+                        eqStore(storeName))
+                .limit(pageSize)
+                .offset((page-1)*pageSize)
+                .fetch();
 
     }
 }

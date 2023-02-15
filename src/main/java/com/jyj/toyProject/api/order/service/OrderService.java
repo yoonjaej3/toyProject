@@ -44,6 +44,20 @@ public class OrderService {
 
     }
 
+    /**
+     *  주문 조회(페이징 처리)
+     */
+    @Transactional
+    public List<OrderResponeDto> findOrderByPaging(OrderRequestSearchDto orderRequestSearchDto) {
+
+        int pageSize = orderRequestSearchDto.getPageSize();
+        int page = orderRequestSearchDto.getPage();
+
+
+        return orderQueryRepository.findOrderByPaging(pageSize,page,orderRequestSearchDto.getMemberName(),orderRequestSearchDto.getStoreName());
+
+    }
+
 
     /**
      *  주문 등록

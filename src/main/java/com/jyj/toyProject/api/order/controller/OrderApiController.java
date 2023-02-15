@@ -16,10 +16,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrderApiController {
 
-    private final OrderQueryRepository orderQueryRepository;
-
-    private final OrderRepository orderRepository;
-
     private final OrderService orderService;
 
     //주문 조회
@@ -27,6 +23,16 @@ public class OrderApiController {
     public List<OrderResponeDto> orderList(@RequestBody OrderRequestSearchDto orderRequestSearchDto){
 
         List<OrderResponeDto> orders =  orderService.findOrder(orderRequestSearchDto);
+
+        return orders;
+
+    }
+
+    //주문 조회(페이징처리)
+    @PostMapping("/ordersByPaging")
+    public List<OrderResponeDto> orderListByPaging(@RequestBody OrderRequestSearchDto orderRequestSearchDto){
+
+        List<OrderResponeDto> orders =  orderService.findOrderByPaging(orderRequestSearchDto);
 
         return orders;
 
