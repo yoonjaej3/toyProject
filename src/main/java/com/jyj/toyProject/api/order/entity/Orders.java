@@ -1,5 +1,6 @@
 package com.jyj.toyProject.api.order.entity;
 
+import com.jyj.toyProject.api.item.entity.Item;
 import com.jyj.toyProject.api.member.entity.Member;
 import com.jyj.toyProject.api.order.enums.PayType;
 import com.jyj.toyProject.api.store.entity.Store;
@@ -31,8 +32,8 @@ public class Orders extends BaseEntity {
     private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="store_seq",nullable = false)
-    private Store store;
+    @JoinColumn(name="item_seq",nullable = false)
+    private Item item;
 
     @Column
     private String request;

@@ -22,24 +22,24 @@ public class OrderResponeDto {
     private PayType payType;
     private LocalDateTime payDate;
     private String memberId;
-    private String storeId;
+    private String itemId;
     private String memberName;
-    private String storeName;
+    private String itemName;
 
 
     @QueryProjection
-    public OrderResponeDto(String orderId, String memberId, String storeId, String request
+    public OrderResponeDto(String orderId, String memberId, String itemId, String request
             , Status type, PayType payType, LocalDateTime payDate
-            , String memberName, String storeName) {
+            , String memberName, String itemName) {
         this.orderId=orderId;
         this.memberId = memberId;
-        this.storeId=storeId;
+        this.itemId=itemId;
         this.request = request;
         this.type = type;
         this.payType = payType;
         this.payDate = payDate;
         this.memberName=memberName;
-        this.storeName=storeName;
+        this.itemName=itemName;
     }
 
     public Orders toEntiity(){

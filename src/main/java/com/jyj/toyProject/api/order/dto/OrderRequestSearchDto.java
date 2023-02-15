@@ -19,12 +19,12 @@ import java.time.LocalDateTime;
 public class OrderRequestSearchDto {
 
     private String memberName;
-    private String storeName;
+    private String itemName;
 
     @QueryProjection
-    public OrderRequestSearchDto(String memberName, String storeName) {
+    public OrderRequestSearchDto(String memberName, String itemName) {
         this.memberName = memberName;
-        this.storeName=storeName;
+        this.itemName=itemName;
 
     }
 

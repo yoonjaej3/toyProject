@@ -1,5 +1,6 @@
 package com.jyj.toyProject.api.order.dto;
 
+import com.jyj.toyProject.api.item.entity.Item;
 import com.jyj.toyProject.api.member.entity.Member;
 import com.jyj.toyProject.api.order.entity.Orders;
 import com.jyj.toyProject.api.order.enums.PayType;
@@ -22,26 +23,26 @@ public class OrderRequestDto {
     private PayType payType;
     private LocalDateTime payDate;
     private String memberId;
-    private String storeId;
+    private String itemId;
 
 
     @QueryProjection
-    public OrderRequestDto(String orderId,String memberId, String storeId, String request,Status type, PayType payType, LocalDateTime payDate) {
+    public OrderRequestDto(String orderId,String memberId, String itemId, String request,Status type, PayType payType, LocalDateTime payDate) {
         this.orderId=orderId;
         this.memberId = memberId;
-        this.storeId=storeId;
+        this.itemId=itemId;
         this.request = request;
         this.type = type;
         this.payType = payType;
         this.payDate = payDate;
     }
 
-    public Orders toEntity(Member member,Store store){
+    public Orders toEntity(Member member, Item item){
 
         return Orders.builder()
                 .id(orderId)
                 .member(member)
-                .store(store)
+                .item(item)
                 .request(request)
                 .type(type)
                 .payDate(payDate)

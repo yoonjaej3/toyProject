@@ -28,13 +28,13 @@ public class OrderQueryRepository{
         return queryFactory.select(new QOrderResponeDto(
                 orders.id,
                 orders.member.id,
-                orders.store.id,
+                orders.item.id,
                 orders.request,
                 orders.type,
                 orders.payType,
                 orders.payDate,
                 orders.member.name,
-                orders.store.name
+                orders.item.name
 
                 ))
                 .from(orders)
@@ -55,7 +55,7 @@ public class OrderQueryRepository{
     private BooleanExpression eqStore(String name) {
 
         if (StringUtils.hasText(name))
-            return orders.store.name.eq(name);
+            return orders.item.name.eq(name);
 
         return null;
     }
@@ -73,13 +73,13 @@ public class OrderQueryRepository{
         return queryFactory.select(new QOrderResponeDto(
                         orders.id,
                         orders.member.id,
-                        orders.store.id,
+                        orders.item.id,
                         orders.request,
                         orders.type,
                         orders.payType,
                         orders.payDate,
                         orders.member.name,
-                        orders.store.name
+                        orders.item.name
 
                 ))
                 .from(orders)
