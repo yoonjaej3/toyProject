@@ -5,6 +5,8 @@ import com.jyj.toyProject.api.order.dto.QOrderResponeDto;
 import com.jyj.toyProject.api.order.entity.Orders;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
@@ -66,7 +68,7 @@ public class OrderQueryRepository{
 
     }
 
-    public List<OrderResponeDto> findOrderByPaging(int pageSize,int page, String memberName, String storeName) {
+    public List<OrderResponeDto> findOrderByPaging(Pageable pageable, String memberName, String storeName) {
 
         return queryFactory.select(new QOrderResponeDto(
                         orders.id,
@@ -83,8 +85,8 @@ public class OrderQueryRepository{
                 .from(orders)
                 .where(eqMember(memberName),
                         eqStore(storeName))
-                .limit(pageSize)
-                .offset((page-1)*pageSize)
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
                 .fetch();
 
     }

@@ -20,16 +20,11 @@ public class OrderRequestSearchDto {
 
     private String memberName;
     private String storeName;
-    private int pageSize;
-    private int page;
-
 
     @QueryProjection
-    public OrderRequestSearchDto(String memberName, String storeName,int pageSize,int page) {
+    public OrderRequestSearchDto(String memberName, String storeName) {
         this.memberName = memberName;
         this.storeName=storeName;
-        this.pageSize = pageSize;
-        this.page = page;
 
     }
 

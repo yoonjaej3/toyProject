@@ -14,6 +14,8 @@ import com.jyj.toyProject.api.store.entity.Store;
 import com.jyj.toyProject.api.store.repository.interfaces.StoreRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -48,13 +50,9 @@ public class OrderService {
      *  주문 조회(페이징 처리)
      */
     @Transactional
-    public List<OrderResponeDto> findOrderByPaging(OrderRequestSearchDto orderRequestSearchDto) {
+    public List<OrderResponeDto> findOrderByPaging(OrderRequestSearchDto orderRequestSearchDto, Pageable pageable) {
 
-        int pageSize = orderRequestSearchDto.getPageSize();
-        int page = orderRequestSearchDto.getPage();
-
-
-        return orderQueryRepository.findOrderByPaging(pageSize,page,orderRequestSearchDto.getMemberName(),orderRequestSearchDto.getStoreName());
+        return orderQueryRepository.findOrderByPaging(pageable,orderRequestSearchDto.getMemberName(),orderRequestSearchDto.getStoreName());
 
     }
 

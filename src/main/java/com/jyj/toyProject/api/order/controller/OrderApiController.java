@@ -7,6 +7,7 @@ import com.jyj.toyProject.api.order.repository.impl.OrderQueryRepository;
 import com.jyj.toyProject.api.order.repository.interfaces.OrderRepository;
 import com.jyj.toyProject.api.order.service.OrderService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,9 +31,9 @@ public class OrderApiController {
 
     //주문 조회(페이징처리)
     @PostMapping("/ordersByPaging")
-    public List<OrderResponeDto> orderListByPaging(@RequestBody OrderRequestSearchDto orderRequestSearchDto){
+    public List<OrderResponeDto> orderListByPaging(@RequestBody OrderRequestSearchDto orderRequestSearchDto, Pageable pageable){
 
-        List<OrderResponeDto> orders =  orderService.findOrderByPaging(orderRequestSearchDto);
+        List<OrderResponeDto> orders =  orderService.findOrderByPaging(orderRequestSearchDto,pageable);
 
         return orders;
 
