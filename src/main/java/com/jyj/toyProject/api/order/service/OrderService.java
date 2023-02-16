@@ -5,7 +5,7 @@ import com.jyj.toyProject.api.item.entity.Item;
 import com.jyj.toyProject.api.item.repository.interfaces.ItemRepository;
 import com.jyj.toyProject.api.member.entity.Member;
 import com.jyj.toyProject.api.member.repository.interfaces.MemberRepository;
-import com.jyj.toyProject.api.order.collection.Commission;
+import com.jyj.toyProject.api.order.collection.Amount;
 import com.jyj.toyProject.api.order.dto.OrderRequestDto;
 import com.jyj.toyProject.api.order.dto.OrderRequestSearchDto;
 import com.jyj.toyProject.api.order.dto.OrderResponeDto;
@@ -13,11 +13,8 @@ import com.jyj.toyProject.api.order.entity.Orders;
 import com.jyj.toyProject.api.order.enums.Status;
 import com.jyj.toyProject.api.order.repository.impl.OrderQueryRepository;
 import com.jyj.toyProject.api.order.repository.interfaces.OrderRepository;
-import com.jyj.toyProject.api.store.entity.Store;
-import com.jyj.toyProject.api.store.repository.interfaces.StoreRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -72,12 +69,14 @@ public class OrderService {
 
         Orders order = orderRequestDto.toEntity(member,item);
 
-        //TODO : priceSet
-        Commission commission = new Commission(order);
+        Amount commission = new Amount(order);
+
+        Orders orderByCommission = commission.getOrder();
 
         Optional.ofNullable(order.getItem()).orElseThrow(() -> new IllegalStateException("메뉴명은 필수 입력 값입니다."));
 
-        orderRepository.save(order);
+        orderRepository.save(orderByCommission);
+
     }
 
     /**

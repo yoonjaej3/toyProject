@@ -38,6 +38,8 @@ public class Orders extends BaseEntity {
     @Column
     private String request;
 
+    @Column
+    private Long amount;
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Status type;
