@@ -37,7 +37,7 @@ public class Amount {
 
         if(order.getPayType().equals(PayType.Card)){
 
-            return order.getItem().getPrice() * 9 / 10 ;
+            return order.getItem().getPrice() * 11 / 10 ;
 
         }
 
