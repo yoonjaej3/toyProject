@@ -57,6 +57,12 @@ public class Orders extends BaseEntity {
 
     }
 
+    public void setCommission(Long amount){
+
+        this.amount = amount;
+
+    }
+
 
 
 }

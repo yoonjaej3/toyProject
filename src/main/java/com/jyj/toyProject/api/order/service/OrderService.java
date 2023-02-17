@@ -63,21 +63,45 @@ public class OrderService {
     @Transactional
     public void registerOrder(OrderRequestDto orderRequestDto) {
 
-        Member member = memmberRepository.findSeqById(orderRequestDto.getMemberId());
+        Member member = memmberRepository.findMemberById(orderRequestDto.getMemberId());
 
-        Item item = itemRepository.findSeqById(orderRequestDto.getItemId());
+        Item item = itemRepository.findItemById(orderRequestDto.getItemId());
 
-        Orders order = orderRequestDto.toEntity(member,item);
+        Orders order = createOrder(member, item, orderRequestDto);
+
+        orderRepository.save(order);
+
+    }
+
+    private Orders createOrder(Member member, Item item, OrderRequestDto orderRequestDto) {
+
+        Orders order = orderRequestDto.toEntity(member, item);
+
+        checkRequiredFields(order);
+
+        calculateCommission(order);
+
+        return order;
+    }
+
+    private void checkRequiredFields(Orders order) {
+
+        if (order.getItem() == null) {
+
+            throw new IllegalStateException("메뉴명은 필수 입력 값입니다.");
+
+        }
+
+    }
+
+    private void calculateCommission(Orders order) {
 
         Amount commission = new Amount(order);
 
-        Orders orderByCommission = commission.getOrder();
-
-        Optional.ofNullable(order.getItem()).orElseThrow(() -> new IllegalStateException("메뉴명은 필수 입력 값입니다."));
-
-        orderRepository.save(orderByCommission);
+        order.setCommission(commission.getOrder().getAmount());
 
     }
+
 
     /**
      *  주문 취소
