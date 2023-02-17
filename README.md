@@ -51,3 +51,48 @@ https://silly-trollius-4c0.notion.site/35e0187b938342bfb5e4ba42b88f8d00?v=20c32e
 
 # ERD  <a name = "erd"></a>
 https://www.erdcloud.com/p/3buW4CcLNQGx3w6y8
+
+# 리팩토링 & 성능 개선  <a name = "refactoring"></a>
+
+- 리펙토링 전
+
+![image](https://user-images.githubusercontent.com/57666307/219549152-694a8bc6-1fde-405d-a5fb-f043fd9150d1.png)
+
+- 리펙토링 내용
+
+1) 메소드명 수정 
+> findSeqById -> findMemberById Input/Ouput을 메쏘드에 명시해줬습니다. ex) input = Id / output = member
+
+2) 중복 제거
+>Optional을 사용하여 order 객체의 item 필드를 체크하는 부분이 있습니다. 
+ 하지만 이 부분은 orderRequestDto 객체의 toEntity() 메소드에서 체크할 수 있어서 삭제 했고 의미를 명확하게 하기 위해서 checkRequiredFields 메쏘드를 만들었습니다.
+ 
+3) 일급 변수 사용 및 최소
+> 지불방식이 현금 또는 카드 일때 수수료 측정을 위해 Amount 라는 일급 변수를 사용 했습니다. Order 타입의 객체를 받아서 Order 타입의 객체로 리턴해주는 형태인데 아래와 같은 코드형태를 객체선언을 최소화하기 위해 리팩토링 했습니다.
+
+```
+        Amount commission = new Amount(order);
+
+        Orders orderByCommission = commission.getOrder();
+```
+
+```
+        Amount commission = new Amount(order);
+
+        order.setCommission(commission.getOrder().getAmount());
+```
+    
+- 리펙토링 후
+
+![image](https://user-images.githubusercontent.com/57666307/219549233-cd7ac36b-f912-4210-bd86-b5196e67550e.png)
+
+![image](https://user-images.githubusercontent.com/57666307/219549395-b40dbec5-fd19-4774-9d2c-3a3160b4992f.png)
+
+![image](https://user-images.githubusercontent.com/57666307/219549420-f6860a52-a557-4286-b88f-d72ed5565014.png)
+
+
+![image](https://user-images.githubusercontent.com/57666307/219549313-74923dea-b658-4b7b-b546-59066f25596e.png)
+
+
+
+ 
