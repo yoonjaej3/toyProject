@@ -72,7 +72,8 @@ https://www.erdcloud.com/p/3buW4CcLNQGx3w6y8
 
 ![image](https://user-images.githubusercontent.com/57666307/219554349-23f8aac9-bad8-4d17-8620-aa5167da10d2.png)
 
-* Entity는 DTO에 의존해서는 안되기 때문에 파라미터에 DTO 를 넘겨줬습니다.
+* Entity는 DTO에 의존해서는 안되기 때문에 파라미터에 DTO 를 넘겨줬습니다.( 엔티티를 API로 외부에 공개하는 것은 좋지 않기 때문)
+* RequsetDto, ResponseDto 를 사용해서 요청과 응답 시 이를 반환했고, 기능 재사용성을 위해 Dto들은 Service단에서 엔티티로 변환 됩니다.
 
 
 # 리팩토링 & 성능 개선  <a name = "refactoring"></a>
