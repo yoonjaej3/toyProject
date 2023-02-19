@@ -69,7 +69,7 @@ class StoreApiControllerTest {
                 .request("요청사항10000")
                 .payType(PayType.Card)
                 .memberId("MMMMMM1")
-                .storeId("SSSSSS1")
+                .itemId("IIIIII1")
                 .type(Status.COMPLETE)
                 .build();
 

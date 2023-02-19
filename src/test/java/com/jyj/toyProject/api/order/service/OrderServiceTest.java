@@ -43,7 +43,7 @@ class OrderServiceTest {
                 .request("요청사항10000")
                 .payType(PayType.Card)
                 .memberId("MMMMMM1")
-                .storeId("SSSSSS1")
+                .itemId("IIIIII1")
                 .type(Status.COMPLETE)
                 .build();
 
@@ -76,7 +76,7 @@ class OrderServiceTest {
         });
 
         //then
-        String expectedMessage = "가게명은 필수 입력 값입니다.";
+        String expectedMessage = "메뉴명은 필수 입력 값입니다.";
         String acutalMessage = exception.getMessage();
         assertEquals(acutalMessage,expectedMessage);
     }
@@ -91,7 +91,7 @@ class OrderServiceTest {
                 .request("요청사항10000")
                 .payType(PayType.Card)
                 .memberId("MMMMMM1")
-                .storeId("SSSSSS1")
+                .itemId("IIIIII1")
                 .type(Status.COMPLETE)
                 .build();
 
@@ -120,7 +120,7 @@ class OrderServiceTest {
                 .request("요청사항10000")
                 .payType(PayType.Card)
                 .memberId("MMMMMM1")
-                .storeId("SSSSSS1")
+                .itemId("IIIIII1")
                 .type(Status.COMPLETE)
                 .build();
 
@@ -128,7 +128,6 @@ class OrderServiceTest {
 
         OrderRequestSearchDto orderRequestSearchDto = OrderRequestSearchDto.builder()
                 .memberName("주윤재")
-                .storeName("버거킹")
                 .build();
 
         //when
@@ -136,10 +135,9 @@ class OrderServiceTest {
 
         //then
         assertEquals(1L,orderRepository.count());
-        OrderResponeDto orderResponeDto = orderQueryRepository.findOrder(orderRequestSearchDto.getMemberName(),orderRequestSearchDto.getStoreName()).get(0);
+        OrderResponeDto orderResponeDto = orderQueryRepository.findOrder(orderRequestSearchDto.getMemberName(),orderRequestSearchDto.getItemName()).get(0);
         assertEquals("OOOOOO1",orderResponeDto.getOrderId());
         assertEquals("주윤재",orderResponeDto.getMemberName());
-        assertEquals("버거킹",orderResponeDto.getStoreName());
 
 
     }

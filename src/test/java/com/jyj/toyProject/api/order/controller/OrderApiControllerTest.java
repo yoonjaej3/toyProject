@@ -59,7 +59,7 @@ class OrderApiControllerTest    {
                 .request("요청사항10000")
                 .payType(PayType.Card)
                 .memberId("MMMMMM1")
-                .storeId("SSSSSS1")
+                .itemId("IIIIII1")
                 .type(Status.COMPLETE)
                 .build();
 
@@ -90,7 +90,7 @@ class OrderApiControllerTest    {
                 .request("요청사항10000")
                 .payType(PayType.Card)
                 .memberId("MMMMMM1")
-                .storeId("SSSSSS1")
+                .itemId("IIIIII1")
                 .type(Status.COMPLETE)
                 .build();
 
@@ -101,7 +101,7 @@ class OrderApiControllerTest    {
                 .build();
 
         //when
-        OrderResponeDto orderResponeDto = orderQueryRepository.findOrder(orderRequestSearchDto.getMemberName(),orderRequestSearchDto.getStoreName()).get(0);
+        OrderResponeDto orderResponeDto = orderQueryRepository.findOrder(orderRequestSearchDto.getMemberName(),orderRequestSearchDto.getItemName()).get(0);
 
         String json = objectMapper.writeValueAsString(orderRequestSearchDto);
 
