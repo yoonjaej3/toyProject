@@ -42,7 +42,7 @@
 - [테스트](#test)
 - [왜 이 기술을 사용했는가?](#why)
 - [리팩토링 & 성능 개선](#refactoring)
-- [swagger Api](#api)
+- [Spring Rest Docs](#api)
 
 
 
@@ -53,6 +53,8 @@ https://silly-trollius-4c0.notion.site/35e0187b938342bfb5e4ba42b88f8d00?v=20c32e
 https://www.erdcloud.com/p/3buW4CcLNQGx3w6y8
 
 # 왜 이 기술을 사용했는가? <a name = "why"></a>
+
+
 
 ### QueryDsl
 
@@ -68,13 +70,46 @@ https://www.erdcloud.com/p/3buW4CcLNQGx3w6y8
 
 ![image](https://user-images.githubusercontent.com/57666307/219553807-cef9a73b-4ce4-4463-b61e-8c81f6f399f6.png)
 
+
+
 ### DTO 분리 
 
 ![image](https://user-images.githubusercontent.com/57666307/219554349-23f8aac9-bad8-4d17-8620-aa5167da10d2.png)
 
-* Entity는 DTO에 의존해서는 안되기 때문에 파라미터에 DTO 를 넘겨줬습니다.( 엔티티를 API로 외부에 공개하는 것은 좋지 않기 때문)
+* Entity는 DTO에 의존해서는 안되기 때문에 파라미터에 DTO 를 넘겨줬습니다.
 * RequsetDto, ResponseDto 를 사용해서 요청과 응답 시 이를 반환했고, 기능 재사용성을 위해 Dto들은 Service단에서 엔티티로 변환 됩니다.
+* 엔티티 접근은 데이터베이스와의 상호작용을 캡슐화하고, 객체-관계 매핑을 통해 데이터를 검색, 저장, 업데이트하는 데 중점을 둡니다. 
+  반면에 DTO 분리는 데이터 전송을 위한 구조적 패턴이며, 클라이언트와 서버 사이의 데이터 전송을 쉽게 만들기 위해 사용됩니다.
+* DTO 분리의 이점은 필요한 데이터만 전송할 수 있습니다. 이는 네트워크 부하를 줄이고, 불필요한 데이터 유출을 방지하여 보안을 강화할 수 있습니다.
+  
+  
+  
+### @Setter 사용 지양
 
+<img width="465" alt="image" src="https://user-images.githubusercontent.com/57666307/219940366-eaced257-5a6d-424a-81a9-8f032cc82355.png">
+
+<img width="354" alt="image" src="https://user-images.githubusercontent.com/57666307/219940629-bf467821-71c5-4c72-b6a7-ae3e019e1abf.png">
+
+<img width="489" alt="image" src="https://user-images.githubusercontent.com/57666307/219940678-42a72491-1c42-4b42-b10d-078e94ab63d4.png">
+
+
+* JPA에서는 엔티티 클래스에서 Setter 메서드를 사용하지 않는 것이 좋습니다. 
+  대신에, 생성자를 이용하여 객체를 생성하고, 필요한 데이터를 초기화하고, getter 메서드를 이용하여 데이터를 조회합니다.
+  @Buillder를 통해 생성자를 생성하거나 메쏘드를 이용하여 객체의 상태를 변경했습니다.
+  
+  
+  
+### 일급컬랙션(변수) 사용
+
+<img width="509" alt="image" src="https://user-images.githubusercontent.com/57666307/219940928-1759622d-bcc7-49f1-88f4-7ff87c627719.png">
+
+<img width="438" alt="image" src="https://user-images.githubusercontent.com/57666307/219940917-344b8904-4d5e-46b7-9d39-705723306a14.png">
+
+* Amount 클래스는 Orders 객체를 필드로 가지고 있고, Orders 객체의 필드를 이용하여 결제 금액을 계산하여 새로운 Orders 객체를 생성하는 일급컬렉션 개념을 사용했습니다.
+* 일급 컬렉션을 사용한 이유는 관련 로직을 캡슐화하여 추상화 수준을 높일 수 있고, 코드의 가독성과 유지보수성을 향상시킬 수 있어서 객체지향적으로 개발하기 위해 사용했습니다.
+
+
+  
 
 # 리팩토링 & 성능 개선  <a name = "refactoring"></a>
 
