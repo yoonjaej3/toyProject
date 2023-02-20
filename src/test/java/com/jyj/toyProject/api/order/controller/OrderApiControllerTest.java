@@ -32,9 +32,13 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.filter.CharacterEncodingFilter;
+
+import java.time.LocalDateTime;
 
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
+import static org.springframework.restdocs.operation.preprocess.Preprocessors.*;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -55,9 +59,6 @@ class OrderApiControllerTest    {
     private ObjectMapper objectMapper;
 
     @Autowired
-    private RestDocumentationResultHandler documentationHandler;
-
-    @Autowired
     private OrderRepository orderRepository;
 
     @Autowired
@@ -66,6 +67,9 @@ class OrderApiControllerTest    {
     @Autowired
     private OrderService orderService;
 
+    private RestDocumentationResultHandler documentationHandler;
+
+
     @BeforeEach
     void clean() {
         orderRepository.deleteAll();
@@ -73,10 +77,12 @@ class OrderApiControllerTest    {
 
 
     @BeforeEach
-    void setUp(WebApplicationContext context, RestDocumentationContextProvider restDocumentation) {
-        this.mockMvc = MockMvcBuilders.webAppContextSetup(context)
+    public void setUp(WebApplicationContext webApplicationContext, RestDocumentationContextProvider restDocumentation) {
+        this.documentationHandler = MockMvcRestDocumentation.document("{class-name}/{method-name}", preprocessRequest(prettyPrint()), preprocessResponse(prettyPrint()));
+        this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext)
                 .apply(documentationConfiguration(restDocumentation))
                 .alwaysDo(documentationHandler)
+                //.addFilters(new CharacterEncodingFilter("UTF-8", true)) // UTF-8로 인코딩 설정
                 .build();
     }
 
@@ -92,6 +98,7 @@ class OrderApiControllerTest    {
                 .memberId("MMMMMM1")
                 .itemId("IIIIII1")
                 .type(Status.COMPLETE)
+                .payDate(LocalDateTime.now())
                 .build();
 
         String json = objectMapper.writeValueAsString(orderRequestDto);
@@ -108,10 +115,8 @@ class OrderApiControllerTest    {
                                 fieldWithPath("payType").description("결제 수단"),
                                 fieldWithPath("memberId").description("회원 ID"),
                                 fieldWithPath("itemId").description("상품 ID"),
-                                fieldWithPath("type").description("주문 상태")
-                        ),
-                        responseFields(
-                                fieldWithPath("id").description("등록된 주문 ID")
+                                fieldWithPath("type").description("주문 상태"),
+                                fieldWithPath("payDate").description("결제 일자")
                         )
                 ));
 
