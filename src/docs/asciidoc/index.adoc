@@ -1,0 +1,3 @@
+include::{snippets}/register-order/http-request.adoc[]
+include::{snippets}/register-order/http-response.adoc[]
+include::{snippets}/register-order/request-fields.adoc[]
