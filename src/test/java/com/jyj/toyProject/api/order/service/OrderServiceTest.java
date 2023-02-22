@@ -8,6 +8,7 @@ import com.jyj.toyProject.api.order.entity.Orders;
 import com.jyj.toyProject.api.order.enums.PayType;
 import com.jyj.toyProject.api.order.enums.Status;
 import com.jyj.toyProject.api.order.repository.interfaces.OrderRepository;
+import com.jyj.toyProject.api.order.repository.interfaces.OrderRepositoryCustom;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,7 +26,7 @@ class OrderServiceTest {
     OrderRepository orderRepository;
 
     @Autowired
-    OrderQueryRepository orderQueryRepository;
+    OrderRepositoryCustom orderRepositoryCustom;
 
 
     @BeforeEach
@@ -135,7 +136,7 @@ class OrderServiceTest {
 
         //then
         assertEquals(1L,orderRepository.count());
-        OrderResponeDto orderResponeDto = orderQueryRepository.findOrder(orderRequestSearchDto.getMemberName(),orderRequestSearchDto.getItemName()).get(0);
+        OrderResponeDto orderResponeDto = orderRepositoryCustom.findOrder(orderRequestSearchDto.getMemberName(),orderRequestSearchDto.getItemName()).get(0);
         assertEquals("OOOOOO1",orderResponeDto.getOrderId());
         assertEquals("주윤재",orderResponeDto.getMemberName());
 

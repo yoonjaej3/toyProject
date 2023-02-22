@@ -10,6 +10,8 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
+import static com.jyj.toyProject.api.order.entity.QOrders.orders;
+
 @Getter
 @Builder
 @AllArgsConstructor
@@ -27,6 +29,7 @@ public class OrderResponeDto {
     private String itemName;
 
 
+
     @QueryProjection
     public OrderResponeDto(String orderId, String memberId, String itemId, String request
             , Status type, PayType payType, LocalDateTime payDate
@@ -40,6 +43,7 @@ public class OrderResponeDto {
         this.payDate = payDate;
         this.memberName=memberName;
         this.itemName=itemName;
+
     }
 
     public Orders toEntiity(){

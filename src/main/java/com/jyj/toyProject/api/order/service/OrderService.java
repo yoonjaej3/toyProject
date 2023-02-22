@@ -13,6 +13,7 @@ import com.jyj.toyProject.api.order.entity.Orders;
 import com.jyj.toyProject.api.order.enums.Status;
 import com.jyj.toyProject.api.order.repository.impl.OrderQueryRepository;
 import com.jyj.toyProject.api.order.repository.interfaces.OrderRepository;
+import com.jyj.toyProject.api.order.repository.interfaces.OrderRepositoryCustom;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Pageable;
@@ -34,15 +35,14 @@ public class OrderService {
 
     private final ItemRepository itemRepository;
 
-    private final OrderQueryRepository orderQueryRepository;
-
+    private final OrderRepositoryCustom OrderRepositoryCustom;
     /**
      *  주문 조회
      */
     @Transactional
     public List<OrderResponeDto> findOrder(OrderRequestSearchDto orderRequestSearchDto) {
 
-        return orderQueryRepository.findOrder(orderRequestSearchDto.getMemberName(),orderRequestSearchDto.getItemName());
+        return OrderRepositoryCustom.findOrder(orderRequestSearchDto.getMemberName(),orderRequestSearchDto.getItemName());
 
     }
 
@@ -52,7 +52,7 @@ public class OrderService {
     @Transactional
     public List<OrderResponeDto> findOrderByPaging(OrderRequestSearchDto orderRequestSearchDto, Pageable pageable) {
 
-        return orderQueryRepository.findOrderByPaging(pageable,orderRequestSearchDto.getMemberName(),orderRequestSearchDto.getItemName());
+        return OrderRepositoryCustom.findOrderByPaging(pageable,orderRequestSearchDto.getMemberName(),orderRequestSearchDto.getItemName());
 
     }
 
@@ -109,7 +109,7 @@ public class OrderService {
     @Transactional
     public void cancelOrder(String orderId) {
 
-        Orders order =orderQueryRepository.findOrderByOrderId(orderId);
+        Orders order =OrderRepositoryCustom.findOrderByOrderId(orderId);
 
         if(order.getType().equals(Status.COMPLETE)){
 

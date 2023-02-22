@@ -3,6 +3,7 @@ package com.jyj.toyProject.api.order.repository.impl;
 import com.jyj.toyProject.api.order.dto.OrderResponeDto;
 import com.jyj.toyProject.api.order.dto.QOrderResponeDto;
 import com.jyj.toyProject.api.order.entity.Orders;
+import com.jyj.toyProject.api.order.repository.interfaces.OrderRepositoryCustom;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.domain.Page;
@@ -15,7 +16,7 @@ import java.util.List;
 import static com.jyj.toyProject.api.order.entity.QOrders.*;
 
 @Repository
-public class OrderQueryRepository{
+public class OrderQueryRepository implements OrderRepositoryCustom {
 
     private final JPAQueryFactory queryFactory;
 
