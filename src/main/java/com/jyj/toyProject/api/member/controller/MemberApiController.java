@@ -6,7 +6,7 @@ import com.jyj.toyProject.api.member.dto.MemberOrganizerDto;
 import com.jyj.toyProject.api.member.dto.MemberSellerDto;
 import com.jyj.toyProject.api.member.entity.Member;
 import com.jyj.toyProject.api.member.enums.Type;
-import com.jyj.toyProject.api.member.repository.impl.MemberQueryRepository;
+import com.jyj.toyProject.api.member.repository.impl.MemberQueryRepositoryImpl;
 import com.jyj.toyProject.api.member.repository.interfaces.MemberRepository;
 import com.jyj.toyProject.api.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -22,13 +22,13 @@ public class MemberApiController {
 
     private final MemberRepository memberRepository;
     private final MemberService memberService;
-    private final MemberQueryRepository memberQueryRepository;
+    private final MemberQueryRepositoryImpl memberQueryRepositoryImpl;
 
     @GetMapping("/member/Buyer")
     public List<MemberBuyerDto> memberBuyerList(String type) {
 
 
-        List<MemberBuyerDto> member = memberQueryRepository.findMemberBuyer(Type.valueOf("Buyer"));
+        List<MemberBuyerDto> member = memberQueryRepositoryImpl.findMemberBuyer(Type.valueOf("Buyer"));
 
         return member;
 
@@ -38,7 +38,7 @@ public class MemberApiController {
     public List<MemberSellerDto> memberSellerList(String type) {
 
 
-        List<MemberSellerDto> member = memberQueryRepository.findMemberSeller(Type.valueOf("Seller"));
+        List<MemberSellerDto> member = memberQueryRepositoryImpl.findMemberSeller(Type.valueOf("Seller"));
 
         return member;
 
@@ -48,7 +48,7 @@ public class MemberApiController {
     public List<MemberOrganizerDto> memberOrganizerList(@PathVariable("type") String type) {
 
 
-        List<MemberOrganizerDto> member = memberQueryRepository.findMemberOrganizer(Type.valueOf("Organizer"));
+        List<MemberOrganizerDto> member = memberQueryRepositoryImpl.findMemberOrganizer(Type.valueOf("Organizer"));
 
         return member;
 

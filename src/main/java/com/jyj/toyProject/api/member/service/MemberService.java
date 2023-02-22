@@ -2,6 +2,7 @@ package com.jyj.toyProject.api.member.service;
 
 import com.jyj.toyProject.api.member.entity.Member;
 import com.jyj.toyProject.api.member.repository.interfaces.MemberRepository;
+import com.jyj.toyProject.api.member.repository.interfaces.MemberRepositoryCoustom;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +16,8 @@ import java.util.Optional;
 public class MemberService {
 
     private final MemberRepository memberRepository;
+
+    private final MemberRepositoryCoustom memberRepositoryCustom;
 
     /**
      *  사용자 등록
@@ -32,9 +35,17 @@ public class MemberService {
      */
     public boolean validateDuplicateMember(Member member) {
 
-        List<Member> memberList = memberRepository.findAllByEmail(member.getSeq());
+        Member findMember = memberRepository.getById(member.getSeq());
 
-        return memberList.isEmpty();
+//        if (findMember == null) {
+//            return false; // 해당 멤버의 정보가 데이터베이스에 존재하지 않으면 false를 반환
+//        } else {
+//            return true; // 해당 멤버의 정보가 데이터베이스에 이미 존재하면 true를 반환
+//        }
+
+        Optional<Member> optionalMember = memberRepository.findById(member.getSeq());
+
+        return optionalMember.isPresent();
 
     }
 

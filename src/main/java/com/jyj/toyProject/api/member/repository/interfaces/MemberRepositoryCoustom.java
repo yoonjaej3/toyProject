@@ -11,6 +11,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface MemberRepository extends JpaRepository<Member,Long>{
+public interface MemberRepositoryCoustom {
+
+    List<MemberSellerDto>findMemberSeller(Type type);
+    List<MemberBuyerDto>findMemberBuyer(Type type);
+    List<MemberOrganizerDto>findMemberOrganizer(Type type);
+    List<Member> findSeqById(String id);
 
 }

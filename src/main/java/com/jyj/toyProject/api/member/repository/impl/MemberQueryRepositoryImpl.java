@@ -2,6 +2,8 @@ package com.jyj.toyProject.api.member.repository.impl;
 import com.jyj.toyProject.api.member.dto.*;
 import com.jyj.toyProject.api.member.entity.Member;
 import com.jyj.toyProject.api.member.enums.Type;
+import com.jyj.toyProject.api.member.repository.interfaces.MemberRepository;
+import com.jyj.toyProject.api.member.repository.interfaces.MemberRepositoryCoustom;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.stereotype.Repository;
 
@@ -11,10 +13,10 @@ import java.util.List;
 import static com.jyj.toyProject.api.member.entity.QMember.member;
 
 @Repository
-public class MemberQueryRepository  {
+public class MemberQueryRepositoryImpl implements MemberRepositoryCoustom {
     private final JPAQueryFactory queryFactory;
 
-    public MemberQueryRepository(EntityManager em) {
+    public MemberQueryRepositoryImpl(EntityManager em) {
         this.queryFactory = new JPAQueryFactory(em);
     }
 

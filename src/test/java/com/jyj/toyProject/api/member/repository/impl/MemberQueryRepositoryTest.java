@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class MemberQueryRepositoryTest {
 
     @Autowired
-    MemberQueryRepository memberQueryRepository;
+    MemberQueryRepositoryImpl memberQueryRepositoryImpl;
 
     @Autowired
     MemberRepository memberRepository;
@@ -38,7 +38,7 @@ class MemberQueryRepositoryTest {
         Member member= MemberDummy.createMember(1,Type.Buyer,null,null);
         memberRepository.save(member);
 
-        MemberBuyerDto myMember1=memberQueryRepository.findMemberBuyer(Type.Buyer).get(0);
+        MemberBuyerDto myMember1=memberQueryRepositoryImpl.findMemberBuyer(Type.Buyer).get(0);
 
         //then
         assertEquals(member1.getName(),myMember1.getName());
