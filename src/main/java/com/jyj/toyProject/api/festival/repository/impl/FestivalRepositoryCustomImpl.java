@@ -13,10 +13,10 @@ import java.util.List;
 import static com.jyj.toyProject.api.festival.entity.QFestival.festival;
 
 @Repository
-public class FestivalQueryRepository {
+public class FestivalRepositoryCustomImpl {
     private final JPAQueryFactory queryFactory;
 
-    public FestivalQueryRepository(EntityManager em) {
+    public FestivalRepositoryCustomImpl(EntityManager em) {
         this.queryFactory = new JPAQueryFactory(em);
     }
 

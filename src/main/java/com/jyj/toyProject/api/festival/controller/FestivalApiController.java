@@ -2,8 +2,8 @@ package com.jyj.toyProject.api.festival.controller;
 
 import com.jyj.toyProject.api.festival.dto.FestivalRequestDto;
 import com.jyj.toyProject.api.festival.dto.FestivalResponseDto;
-import com.jyj.toyProject.api.festival.repository.impl.FestivalQueryRepository;
 import com.jyj.toyProject.api.festival.repository.interfaces.FestivalRepository;
+import com.jyj.toyProject.api.festival.repository.interfaces.FestivalRepositoryCustom;
 import com.jyj.toyProject.api.festival.service.FestivalService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +16,7 @@ public class FestivalApiController {
 
     private final FestivalRepository festivalRepository;
 
-    private final FestivalQueryRepository festivalQueryRepository;
+    private final FestivalRepositoryCustom festivalRepositoryCustom;
 
     private final FestivalService festivalService;
 
@@ -24,7 +24,7 @@ public class FestivalApiController {
     @GetMapping("/festival")
     public List<FestivalResponseDto> festivalList(){
 
-        List<FestivalResponseDto> festival = festivalQueryRepository.findAllFestival();
+        List<FestivalResponseDto> festival = festivalRepositoryCustom.findAllFestival();
 
         return festival;
 

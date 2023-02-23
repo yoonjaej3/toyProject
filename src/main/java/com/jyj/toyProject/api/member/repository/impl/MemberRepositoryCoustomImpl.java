@@ -13,10 +13,10 @@ import java.util.List;
 import static com.jyj.toyProject.api.member.entity.QMember.member;
 
 @Repository
-public class MemberQueryRepositoryImpl implements MemberRepositoryCoustom {
+public class MemberRepositoryCoustomImpl implements MemberRepositoryCoustom {
     private final JPAQueryFactory queryFactory;
 
-    public MemberQueryRepositoryImpl(EntityManager em) {
+    public MemberRepositoryCoustomImpl(EntityManager em) {
         this.queryFactory = new JPAQueryFactory(em);
     }
 

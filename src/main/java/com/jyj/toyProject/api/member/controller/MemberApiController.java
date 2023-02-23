@@ -6,8 +6,8 @@ import com.jyj.toyProject.api.member.dto.MemberOrganizerDto;
 import com.jyj.toyProject.api.member.dto.MemberSellerDto;
 import com.jyj.toyProject.api.member.entity.Member;
 import com.jyj.toyProject.api.member.enums.Type;
-import com.jyj.toyProject.api.member.repository.impl.MemberQueryRepositoryImpl;
 import com.jyj.toyProject.api.member.repository.interfaces.MemberRepository;
+import com.jyj.toyProject.api.member.repository.interfaces.MemberRepositoryCoustom;
 import com.jyj.toyProject.api.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,13 +22,14 @@ public class MemberApiController {
 
     private final MemberRepository memberRepository;
     private final MemberService memberService;
-    private final MemberQueryRepositoryImpl memberQueryRepositoryImpl;
+    private final MemberRepositoryCoustom memberRepositoryCoustom;
+
 
     @GetMapping("/member/Buyer")
     public List<MemberBuyerDto> memberBuyerList(String type) {
 
 
-        List<MemberBuyerDto> member = memberQueryRepositoryImpl.findMemberBuyer(Type.valueOf("Buyer"));
+        List<MemberBuyerDto> member = memberRepositoryCoustom.findMemberBuyer(Type.valueOf("Buyer"));
 
         return member;
 
@@ -38,7 +39,7 @@ public class MemberApiController {
     public List<MemberSellerDto> memberSellerList(String type) {
 
 
-        List<MemberSellerDto> member = memberQueryRepositoryImpl.findMemberSeller(Type.valueOf("Seller"));
+        List<MemberSellerDto> member = memberRepositoryCoustom.findMemberSeller(Type.valueOf("Seller"));
 
         return member;
 
@@ -48,7 +49,7 @@ public class MemberApiController {
     public List<MemberOrganizerDto> memberOrganizerList(@PathVariable("type") String type) {
 
 
-        List<MemberOrganizerDto> member = memberQueryRepositoryImpl.findMemberOrganizer(Type.valueOf("Organizer"));
+        List<MemberOrganizerDto> member = memberRepositoryCoustom.findMemberOrganizer(Type.valueOf("Organizer"));
 
         return member;
 

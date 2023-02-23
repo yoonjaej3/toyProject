@@ -4,6 +4,7 @@ import com.jyj.toyProject.api.festival.dto.FestivalRequestDto;
 import com.jyj.toyProject.api.festival.entity.Festival;
 import com.jyj.toyProject.api.festival.repository.impl.FestivalQueryRepository;
 import com.jyj.toyProject.api.festival.repository.interfaces.FestivalRepository;
+import com.jyj.toyProject.api.festival.repository.interfaces.FestivalRepositoryCustom;
 import com.jyj.toyProject.api.member.entity.Member;
 import com.jyj.toyProject.api.order.dto.OrderRequestDto;
 import com.jyj.toyProject.api.order.entity.Orders;
@@ -24,7 +25,7 @@ public class FestivalService {
 
     private final FestivalRepository festivalRepository;
 
-    private final FestivalQueryRepository festivalQueryRepository;
+    private final FestivalRepositoryCustom festivalRepositoryCustom;
 
     /**
      *  페스티벌등록
@@ -44,7 +45,7 @@ public class FestivalService {
     @Transactional
     public void  cancelFestival(String festivalId) {
 
-       Festival festival = festivalQueryRepository.findFestivalByFestivalId(festivalId);
+       Festival festival = festivalRepositoryCustom.findFestivalByFestivalId(festivalId);
 
        festivalRepository.delete(festival);
 

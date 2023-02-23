@@ -1,5 +1,6 @@
 package com.jyj.toyProject.api.member.repository.impl;
 
+import com.jyj.toyProject.api.member.repository.interfaces.MemberRepositoryCoustom;
 import com.jyj.toyProject.dummy.MemberDummy;
 import com.jyj.toyProject.api.member.dto.MemberBuyerDto;
 import com.jyj.toyProject.api.member.entity.Member;
@@ -16,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class MemberQueryRepositoryTest {
 
     @Autowired
-    MemberQueryRepositoryImpl memberQueryRepositoryImpl;
+    MemberRepositoryCoustom memberRepositoryCoustom;
 
     @Autowired
     MemberRepository memberRepository;
@@ -38,7 +39,7 @@ class MemberQueryRepositoryTest {
         Member member= MemberDummy.createMember(1,Type.Buyer,null,null);
         memberRepository.save(member);
 
-        MemberBuyerDto myMember1=memberQueryRepositoryImpl.findMemberBuyer(Type.Buyer).get(0);
+        MemberBuyerDto myMember1=memberRepositoryCoustom.findMemberBuyer(Type.Buyer).get(0);
 
         //then
         assertEquals(member1.getName(),myMember1.getName());

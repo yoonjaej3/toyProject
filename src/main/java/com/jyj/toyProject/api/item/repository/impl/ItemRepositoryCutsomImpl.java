@@ -8,6 +8,7 @@ import com.jyj.toyProject.api.item.dto.QItemResponseDto;
 import static com.jyj.toyProject.api.item.entity.QItem.*;
 
 import com.jyj.toyProject.api.item.entity.Item;
+import com.jyj.toyProject.api.item.repository.interfaces.ItemRepositoryCutsom;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.stereotype.Repository;
@@ -18,10 +19,10 @@ import java.util.List;
 
 
 @Repository
-public class ItemQueryRepository {
+public class ItemRepositoryCutsomImpl  implements ItemRepositoryCutsom {
     private final JPAQueryFactory queryFactory;
 
-    public ItemQueryRepository(EntityManager em) {
+    public ItemRepositoryCutsomImpl(EntityManager em) {
         this.queryFactory = new JPAQueryFactory(em);
     }
 

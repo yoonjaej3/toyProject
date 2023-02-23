@@ -4,8 +4,8 @@ import com.jyj.toyProject.api.item.dto.ItemRequestDto;
 import com.jyj.toyProject.api.item.dto.ItemRequestSearchDto;
 import com.jyj.toyProject.api.item.dto.ItemResponseDto;
 import com.jyj.toyProject.api.item.entity.Item;
-import com.jyj.toyProject.api.item.repository.impl.ItemQueryRepository;
 import com.jyj.toyProject.api.item.repository.interfaces.ItemRepository;
+import com.jyj.toyProject.api.item.repository.interfaces.ItemRepositoryCutsom;
 import com.jyj.toyProject.api.store.entity.Store;
 import com.jyj.toyProject.api.store.repository.interfaces.StoreRepository;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +22,7 @@ import java.util.Optional;
 @Slf4j
 public class ItemService {
 
-    private final ItemQueryRepository itemQueryRepository;
+    private final ItemRepositoryCutsom itemRepositoryCutsom;
 
     private final StoreRepository storeRepository;
 
@@ -34,7 +34,7 @@ public class ItemService {
     @Transactional
     public List<ItemResponseDto> findItem(ItemRequestSearchDto itemRequestSearchDto) {
 
-        return itemQueryRepository.findStore(itemRequestSearchDto.getStoreName());
+        return itemRepositoryCutsom.findStore(itemRequestSearchDto.getStoreName());
 
     }
 
