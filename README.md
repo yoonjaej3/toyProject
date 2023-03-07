@@ -42,6 +42,7 @@
 - [왜 이 기술을 사용했는가?](#why)
 - [리팩토링 & 성능 개선](#refactoring)
 - [Spring Rest Docs](#api)
+- [프로젝트 후기](#review)
 
 
 # ERD  <a name = "erd"></a>
@@ -146,6 +147,16 @@ https://www.erdcloud.com/p/3buW4CcLNQGx3w6y8
 
 ![image](https://user-images.githubusercontent.com/57666307/219549313-74923dea-b658-4b7b-b546-59066f25596e.png)
 
+# 프로젝트 후기  <a name = "review"></a>
 
+제가 JPA를 공부하게 된 계기는 지금보다 조금더 잘하는 개발자가 되고 싶어서 입니다.
+어떻게 하면 잘 할 수 있을까 고민을 하다 객체지향적으로 개발자가 좋은 개발자라는 생각이 들었고,
+제가 하고 있는 것 중에서 객체지향적인 경험을 체감할 수 있는게 무엇일까 생각하다 JPA를 공부했습니다.
+현재 직장에서는 ORM(Object-Relational Mapping)으로 MyBatis를 사용하고 있으며 JPA와 비교 했을때 아래와 같은 차이가 있었습니다.
 
+1) 단순한 CURD 쿼리는 SQL 쿼리를 직접 작성하지 않아 생산성이 높았습니다.
+
+2) Mybatis를 사용할때는 SQL 쿼리를 직접 작성해서 객체지향 프로그래밍의 느낌을 받지 못했는데, JPA는 객체와 테이블간의 자동 매핑이 되며, 내부적으로 SQL을 생성하고 실행하기 떄문에 객채제향 프로그래밍과 DB간의 연계되는 느낌을 받았습니다.
+
+JPA가 Myabtis 보다 더 객체지향적인 ORM이라는 것을 토이프로젝트를 만들면서 느꼇지만 객체지향적인 개발자가 되기에는 기술에 이해와 숙련도 뿐만 아니라 근본적인 기본 실력을 늘려야 될 필요성을 느꼇고,  NEXTSTEP 의 'TDD, 클린 코드 with Java' 강의를 들을 계획입니다.
  
