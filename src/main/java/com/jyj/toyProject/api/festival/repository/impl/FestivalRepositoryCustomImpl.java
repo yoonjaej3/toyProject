@@ -3,6 +3,7 @@ package com.jyj.toyProject.api.festival.repository.impl;
 import com.jyj.toyProject.api.festival.dto.FestivalResponseDto;
 import com.jyj.toyProject.api.festival.dto.QFestivalResponseDto;
 import com.jyj.toyProject.api.festival.entity.Festival;
+import com.jyj.toyProject.api.festival.repository.interfaces.FestivalRepositoryCustom;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.hibernate.sql.Select;
 import org.springframework.stereotype.Repository;
@@ -13,7 +14,7 @@ import java.util.List;
 import static com.jyj.toyProject.api.festival.entity.QFestival.festival;
 
 @Repository
-public class FestivalRepositoryCustomImpl {
+public class FestivalRepositoryCustomImpl implements FestivalRepositoryCustom {
     private final JPAQueryFactory queryFactory;
 
     public FestivalRepositoryCustomImpl(EntityManager em) {

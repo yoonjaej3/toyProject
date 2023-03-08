@@ -16,6 +16,6 @@ public interface MemberRepositoryCoustom {
     List<MemberSellerDto>findMemberSeller(Type type);
     List<MemberBuyerDto>findMemberBuyer(Type type);
     List<MemberOrganizerDto>findMemberOrganizer(Type type);
-    List<Member> findSeqById(String id);
+    Member findMemberById(String id);
 
 }

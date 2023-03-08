@@ -1,13 +1,7 @@
 package com.jyj.toyProject.api.store.service;
 
 import com.jyj.toyProject.api.festival.entity.Festival;
-import com.jyj.toyProject.api.festival.repository.impl.FestivalQueryRepository;
-import com.jyj.toyProject.api.member.entity.Member;
-import com.jyj.toyProject.api.order.dto.OrderRequestDto;
-import com.jyj.toyProject.api.order.dto.OrderRequestSearchDto;
-import com.jyj.toyProject.api.order.dto.OrderResponeDto;
-import com.jyj.toyProject.api.order.entity.Orders;
-import com.jyj.toyProject.api.order.repository.impl.OrderQueryRepository;
+import com.jyj.toyProject.api.festival.repository.interfaces.FestivalRepositoryCustom;
 import com.jyj.toyProject.api.store.dto.StoreRequestDto;
 import com.jyj.toyProject.api.store.dto.StoreRequestSearchDto;
 import com.jyj.toyProject.api.store.dto.StoreResponseDto;
@@ -20,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
@@ -30,7 +23,7 @@ public class StoreService {
 
     private final StoreQueryRepository storeQueryRepository;
 
-    private final FestivalQueryRepository festivalQueryRepository;
+    private final FestivalRepositoryCustom festivalRepositoryCustom;
 
     private final StoreRepository storeRepository;
 
@@ -50,7 +43,7 @@ public class StoreService {
     @Transactional
     public void registerStore(StoreRequestDto storeRequestDto) {
 
-        Festival festival = festivalQueryRepository.findFestivalByFestivalId(storeRequestDto.getFestivalId());
+        Festival festival = festivalRepositoryCustom.findFestivalByFestivalId(storeRequestDto.getFestivalId());
 
         Store store = storeRequestDto.toEntity(festival);
 

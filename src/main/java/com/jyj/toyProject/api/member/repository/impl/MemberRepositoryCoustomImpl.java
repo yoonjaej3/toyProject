@@ -55,11 +55,11 @@ public class MemberRepositoryCoustomImpl implements MemberRepositoryCoustom {
                 .fetch();
     }
 
-    public List<Member> findSeqById(String id){
+    public Member findMemberById(String id){
         return queryFactory.select(member)
                 .from(member)
                 .where(member.id.eq(id))
-                .fetch();
+                .fetch().get(0);
     }
 
 }

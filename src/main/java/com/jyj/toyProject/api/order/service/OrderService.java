@@ -5,13 +5,13 @@ import com.jyj.toyProject.api.item.entity.Item;
 import com.jyj.toyProject.api.item.repository.interfaces.ItemRepository;
 import com.jyj.toyProject.api.member.entity.Member;
 import com.jyj.toyProject.api.member.repository.interfaces.MemberRepository;
+import com.jyj.toyProject.api.member.repository.interfaces.MemberRepositoryCoustom;
 import com.jyj.toyProject.api.order.collection.Amount;
 import com.jyj.toyProject.api.order.dto.OrderRequestDto;
 import com.jyj.toyProject.api.order.dto.OrderRequestSearchDto;
 import com.jyj.toyProject.api.order.dto.OrderResponeDto;
 import com.jyj.toyProject.api.order.entity.Orders;
 import com.jyj.toyProject.api.order.enums.Status;
-import com.jyj.toyProject.api.order.repository.impl.OrderQueryRepository;
 import com.jyj.toyProject.api.order.repository.interfaces.OrderRepository;
 import com.jyj.toyProject.api.order.repository.interfaces.OrderRepositoryCustom;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +21,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
@@ -36,6 +35,9 @@ public class OrderService {
     private final ItemRepository itemRepository;
 
     private final OrderRepositoryCustom OrderRepositoryCustom;
+
+    private final MemberRepositoryCoustom  memberRepositoryCoustom;
+
     /**
      *  주문 조회
      */
@@ -63,7 +65,7 @@ public class OrderService {
     @Transactional
     public void registerOrder(OrderRequestDto orderRequestDto) {
 
-        Member member = memmberRepository.findMemberById(orderRequestDto.getMemberId());
+        Member member = memberRepositoryCoustom.findMemberById(orderRequestDto.getMemberId());
 
         Item item = itemRepository.findItemById(orderRequestDto.getItemId());
 
