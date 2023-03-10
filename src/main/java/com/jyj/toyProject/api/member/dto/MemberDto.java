@@ -2,11 +2,15 @@ package com.jyj.toyProject.api.member.dto;
 
 import com.jyj.toyProject.api.member.entity.Member;
 import com.jyj.toyProject.api.member.enums.Type;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class MemberDto {
 
     private Long seq;

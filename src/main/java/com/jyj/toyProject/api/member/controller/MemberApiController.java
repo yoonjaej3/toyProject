@@ -6,10 +6,12 @@ import com.jyj.toyProject.api.member.dto.MemberOrganizerDto;
 import com.jyj.toyProject.api.member.dto.MemberSellerDto;
 import com.jyj.toyProject.api.member.entity.Member;
 import com.jyj.toyProject.api.member.enums.Type;
+import com.jyj.toyProject.api.member.exception.MemberNotFoundException;
 import com.jyj.toyProject.api.member.repository.interfaces.MemberRepository;
 import com.jyj.toyProject.api.member.repository.interfaces.MemberRepositoryCoustom;
 import com.jyj.toyProject.api.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,7 +47,7 @@ public class MemberApiController {
 
     }
 
-    @GetMapping("/member/ORGANIZER")
+    @GetMapping("/member/Organizer")
     public List<MemberOrganizerDto> memberOrganizerList(@PathVariable("type") String type) {
 
 
@@ -79,13 +81,17 @@ public class MemberApiController {
 
     @Transactional
     @PutMapping("/members")
-    public String update(@RequestBody MemberDto memberDto){
+    public ResponseEntity<Void> update(@RequestBody MemberDto memberDto){
 
         Optional<Member> member = memberRepository.findById(memberDto.getSeq());
 
-        member.ifPresent(m->memberService.updateMember(memberDto.getSeq(),memberDto.getName()));
+        if (!member.isPresent()) {
+            throw new MemberNotFoundException("해당 멤버가 존재하지 않습니다.");
+        }
 
-        return "성공";
+        memberService.updateMember(memberDto.getSeq(), memberDto.getName());
+
+        return ResponseEntity.ok().build();
 
     }
 
